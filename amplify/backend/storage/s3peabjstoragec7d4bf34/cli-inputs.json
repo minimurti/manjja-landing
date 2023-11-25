@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3peabjstoragec7d4bf34",
+  "bucketName": "peabj-storage-c7d4bf34",
+  "policyUUID": "5d7d8516",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "READ",
+    "CREATE_AND_UPDATE",
+    "DELETE"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+    "appName": "peabj",
+    "roleName": "pinpointLambdaRoleb6d145f8",
+    "cloudformationPolicyName": "cloudformationPolicyb6d145f8",
+    "cloudWatchPolicyName": "cloudWatchPolicyb6d145f8",
+    "pinpointPolicyName": "pinpointPolicyb6d145f8",
+    "authPolicyName": "pinpoint_amplify_b6d145f8",
+    "unauthPolicyName": "pinpoint_amplify_b6d145f8",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "paths": {
+    "/lambdas": {
+      "name": "/lambdas",
+      "lambdaFunction": "deletePuimAndRelations",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "AppSyncApiName": "peabj",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2022-10-30T23:01:30.874Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authpeabj",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

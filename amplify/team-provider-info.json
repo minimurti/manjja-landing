@@ -1,0 +1,44 @@
+{
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-peabj-prod-20211-authRole",
+      "UnauthRoleArn": "arn:aws:iam::204246486270:role/amplify-peabj-prod-20211-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::204246486270:role/amplify-peabj-prod-20211-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-peabj-prod-20211-deployment",
+      "UnauthRoleName": "amplify-peabj-prod-20211-unauthRole",
+      "StackName": "amplify-peabj-prod-20211",
+      "StackId": "arn:aws:cloudformation:us-east-2:204246486270:stack/amplify-peabj-prod-20211/b28c6590-5be4-11ed-80a6-0a8c5403ef94",
+      "AmplifyAppId": "d3dcjibbh6gw73",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-peabj-prod-20211-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+    },
+    "categories": {
+      "analytics": {
+        "Pinpoint": {
+          "Name": "peabj-prod",
+          "Id": "4cdfa26bf64b4eb5852631f16fedbacc",
+          "Region": "us-east-1"
+        }
+      },
+      "notifications": {
+        "Pinpoint": {
+          "Name": "peabj-prod",
+          "Id": "4cdfa26bf64b4eb5852631f16fedbacc",
+          "Region": "us-east-1"
+        }
+      },
+      "auth": {
+        "peabj": {}
+      },
+      "function": {
+        "deletePuimAndRelations": {
+          "deploymentBucketName": "amplify-peabj-prod-20211-deployment",
+          "s3Key": "amplify-builds/deletePuimAndRelations-44334777764d58486768-build.zip"
+        }
+      },
+      "storage": {
+        "s3peabjstoragec7d4bf34": {}
+      }
+    }
+  }
+}

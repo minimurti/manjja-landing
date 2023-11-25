@@ -1,0 +1,269 @@
+type Reports @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  vicPublicUserInfoModelID: ID
+  perpPublicUserInfoModelID: ID
+  notes: String
+}
+
+# @auth(rules: [{allow: owner, operations: [create]}, {allow: private, operations: [read]}])
+# @TODO: consider using more secure auth
+type Referral @model @auth(rules: [{allow: private}]) {
+  id: ID!  @index(name: "byRecipientID")
+  refMakerID: ID!  @index(name: "bySenderID")
+  spent: Boolean! # @auth(rules: [{allow: private, operations: [create, update, read]}])
+}
+
+enum MatchType {
+  comp
+  comm
+  rand
+}
+
+enum NotificationChannel {
+  APNS
+  GCM
+  APNS_Sandbox
+}
+
+enum Status {
+  planned
+  progress
+  review
+  complete
+}
+
+type PeabjIsLive @model @auth(rules: [{allow: public, operations: [read]}, {allow: private, operations: [read]}]) {
+  id: ID!
+  yes: Boolean!
+} 
+
+type PeabjPassword @model @auth(rules: [{allow: public, operations: [read]}, {allow: private, operations: [read]}]) {
+  id: ID!
+  daPassword: String!
+} 
+
+type HillaryClinton @model @auth(rules: [{allow: public, operations: [create]}, {allow: private, operations: [create]}]) {
+  id: ID!
+  email: String!
+  deviceToken: String
+} 
+
+type Connection@model @auth(rules: [{allow: private}]) {
+  id: ID!
+  publicUserInfoModelID: ID! @index(name: "byPublicUserInfoModel", queryField: "connectionsByPuimID")
+  publicUserInfoModel: PublicUserInfoModel! @belongsTo(fields: ["publicUserInfoModelID"])
+  otherUserID: ID!  @index(name: "byOtherUser")
+  isBlocked: Boolean
+  inMatchType: MatchType
+}
+
+type Message @model(timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" }) @auth(rules: [{allow: owner}, {allow: private, operations: [read]}]) {
+  id: ID!
+  typename: String @default(value: "Message") @index(name: "byTypename", queryField: "messagesByTypeName", sortKeyFields: ["createdAt"])
+  text: String
+  attachment: String
+  reply: Message @hasOne
+  displayName: String @default(value: "New Match Message")
+  groupOfMessagesModelID: ID @index(name: "byGroupOfMessagesModel", queryField: "messagesByGommID", sortKeyFields: ["createdAt"])
+  groupOfMessagesModel: GroupOfMessagesModel @belongsTo(fields: ["groupOfMessagesModelID"])
+  senderID: ID! @index(name: "byPublicUserInfoModel")
+  sender: PublicUserInfoModel @belongsTo(fields: ["senderID"])
+  recipientDeviceTokens: String @default(value: "")
+  recipientIDs: String @index(name: "byRecipientIDs", queryField: "messagesByRecipientIDs", sortKeyFields: ["createdAt"])
+  createdAt: String!
+  updatedAt: String!
+  #owner: String @auth(rules: [{ allow: owner, operations: [read, delete]},  {allow: private, operations: [read]}])
+}
+
+type ProgressTrackerMessage @model(timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" }) @auth(rules: [{allow: owner}, {allow: private}]) {
+  id: ID!
+  typename: String @default(value: "ProgressTrackerMessage") @index(name: "byTypename", queryField: "progressTrackerMessagesByTypeName", sortKeyFields: ["createdAt"])
+  text: String
+  attachment: String
+  reply: ProgressTrackerMessage @hasOne
+  progressTrackerID: ID @index(name: "byProgressTracker", queryField: "ptMessagesByPTID", sortKeyFields: ["createdAt"])
+  progressTracker: ProgressTracker @belongsTo(fields: ["progressTrackerID"])
+  senderID: ID! @index(name: "byPublicUserInfoModel")
+  sender: PublicUserInfoModel @belongsTo(fields: ["senderID"])
+  createdAt: String!
+  updatedAt: String!
+  #owner: String @auth(rules: [{ allow: owner, operations: [read, delete]},  {allow: private, operations: [read]}])
+}
+
+type SchoolModel @model @auth(rules: [{allow: private, operations: [read]}]) {
+  id: ID!
+  domain: ID!
+  name: String! @index(name: "byName")
+  shortName: String
+  logoImageURL: String
+  city: String
+  state: String
+  country: String
+  lat: Float
+  lon: Float
+  isAdultLevel: Boolean
+  publicUserInfoModels: [PublicUserInfoModel] @hasMany(indexName: "bySchoolModel", fields: ["id"])
+  # skillGroupID: ID!
+}
+
+type SkillGroup @model @auth(rules: [{allow: public, operations: [read]}, {allow: private, operations: [read]}]) {
+  id: ID!
+  name: String
+  SkillModels: [SkillModel!] @hasMany(indexName: "bySkillGroup", fields: ["id"])
+}
+
+type GroupOfMessagesModel @model(timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" }) @auth(rules: [{allow: private}]) {
+  id: ID!
+  messageModels: [Message!] @hasMany(indexName: "byGroupOfMessagesModel", fields: ["id"])
+  publicUserInfoModels: [GroupOfMessagesModelPublicUserInfoModel!] @hasMany(indexName: "byGroupOfMessagesModel", fields: ["id"])
+  groupName: String
+  createdAt: String!
+  updatedAt: String!
+  # ^CounterIntuitive 
+  # PublicUserInfoModels: [GroupOfMessagesModelPublicUserInfoModel!] @hasMany(indexName: "bGroupOfMessagesModelPublicUserInfoModel", fields: ["id"])
+}
+
+type GroupOfMessagesModelPublicUserInfoModel @model(timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" }) @auth(rules: [{allow: private}]) {
+  id: ID!
+  publicUserInfoModelID: ID! @index(name: "byPublicUserInfoModel", queryField: "gommPuimsByPuimID", sortKeyFields: ["createdAt"])
+  publicUserInfoModel: PublicUserInfoModel @belongsTo(fields: ["publicUserInfoModelID"])
+  groupOfMessagesModelID: ID! @index(name: "byGroupOfMessagesModel")
+  groupOfMessagesModel: GroupOfMessagesModel  @belongsTo(fields: ["groupOfMessagesModelID"])
+  allowNotifications: Boolean @default(value: "true")
+  lastOpened: AWSDateTime 
+  displayName: String
+  createdAt: String!
+  updatedAt: String!
+}
+
+type PublicUserInfoModel @model(subscriptions: null, timestamps: {createdAt: "createdAt", updatedAt: "updatedAt" }) @auth(rules: [{allow: owner}, {allow: private, operations: [read]}]) {
+  id: ID!
+  typename: String @default(value: "PublicUserInfoModel") @index(name: "byTypename", queryField: "puimsByLastActive", sortKeyFields: ["lastActive"])
+  firstName: String
+  userDesiredSkillModels: [UserDesiredSkillModel!] @hasMany(indexName: "byPublicUserInfoModel", fields: ["id"])
+  lastName: String
+  year: String
+  major: String
+  bio: String
+  userPossessedSkillModels: [UserPossessedSkillModel!] @hasMany(indexName: "byPublicUserInfoModel", fields: ["id"])
+  lastOpenedProgressTrackerChat: AWSDateTime
+  photo: String
+  schoolmodelID: ID @index(name: "bySchoolModel") #Yes I know it should have a capital M for both
+  schoolModel: SchoolModel @belongsTo(fields: ["schoolmodelID"]) #Yes I know it should have a capital M for both
+  unlistedSchoolName: String
+  lastActive: String #Not really a string but must be one unfortunately
+  messageModels: [Message!] @hasMany(indexName: "byPublicUserInfoModel", fields: ["id"])
+  progressTrackerMessageModels: [ProgressTrackerMessage!] @hasMany(indexName: "byPublicUserInfoModel", fields: ["id"])
+  groupOfMessagesModels: [GroupOfMessagesModelPublicUserInfoModel!] @hasMany(indexName: "byPublicUserInfoModel", fields: ["id"])
+  connections: [Connection!] @hasMany(indexName: "byPublicUserInfoModel", fields: ["id"])
+  deviceToken: String
+  channel: NotificationChannel
+  concatedDesiredSkillIDs: String
+  concatedPossessedSkillIDs: String
+  dob: AWSDate
+  isSchoolVerified: Boolean
+  isPhotoVerified: Boolean
+  lat: Float
+  lon: Float
+  progressTrackerID: ID @index(name: "byProgressTracker")
+  progressTracker: ProgressTracker @belongsTo(fields: ["progressTrackerID"])
+  progressTrackerInvitations: [ProgressTrackerInvitation] @hasMany(indexName: "byPublicUserInfoModel")
+  todos: [Todo] @hasMany(indexName: "byPublicUserInfoModel")
+
+  #owner: String @auth(rules: [{ allow: owner, operations: [read, delete] }, {allow: private, operations: [read]}])
+}
+
+type ProgressTrackerInvitation @model @auth(rules: [{allow: owner}, {allow: private}]) {
+  id: ID!
+  progressTrackerID: ID! @index(name: "byProgressTracker")
+  progressTracker: ProgressTracker @belongsTo(fields: ["progressTrackerID"])
+  publicUserInfoModelID: ID! @index(name: "byPublicUserInfoModel", queryField: "ptInvitesByPuimID")
+  publicUserInfoModel: PublicUserInfoModel @belongsTo(fields: ["publicUserInfoModelID"])
+  isAccepted: Boolean #True if owner 
+  isDeclined: Boolean #implement later
+  isOpened: Boolean #implement later
+  #isOwner: Boolean
+  lastOpenedProgressTrackerTodos: AWSDateTime
+  lastOpenedProgressTrackerChat: AWSDateTime
+}
+
+type ProgressTracker @model  @auth(rules: [{allow: owner}, {allow: private}]) {
+  id: ID!
+  name: String
+  description: String
+  ownerPuimID: String #TODO: implement actual secure ownership and potentially group ownership
+  members: [PublicUserInfoModel] @hasMany(indexName: "byProgressTracker")
+  invitations: [ProgressTrackerInvitation] @hasMany(indexName: "byProgressTracker")
+  prototypePercent: Float
+  prototypeComment: String
+  marketTestingPercent: Float
+  marketTestingComment: String
+  productMarketFitPercent: Float
+  productMarketFitComment: String
+  fundsPercent: Float
+  fundsComment: String
+  goToMarketPercent: Float
+  goToMarketComment: String
+  businessModalPercent: Float
+  businessModalComment: String
+  growthPercent: Float
+  growthComment: String
+  messageModels: [ProgressTrackerMessage!] @hasMany(indexName: "byProgressTracker", fields: ["id"])
+  #^^ list of worthless stupid words for dumb business people.
+  #.. but... who I am to say with all these words preceding "Float" and "String" and not "numbers" and "letters"
+  todos: [Todo] @hasMany(indexName: "byProgressTracker")
+
+  #owner --> should only be possible if the 
+}
+
+type Todo @model @auth(rules: [{allow: owner}, {allow: private}]) {
+  category: String #or enum ttk
+  task: String
+  description: String
+  progressTrackerID: ID @index(name: "byProgressTracker", queryField: "todosByPTID")
+  progressTracker: ProgressTracker @belongsTo(fields: ["progressTrackerID"])
+  publicUserInfoModelID: ID @index(name: "byPublicUserInfoModel")
+  assignee: PublicUserInfoModel @belongsTo(fields: ["publicUserInfoModelID"])
+  dueDate: AWSDateTime
+  status: Status
+  notifyTeam: Boolean
+  #TODO: give owner arrow with list of members 
+}
+
+type UserDesiredSkillModel @model @auth(rules: [{allow: owner}, {allow: private, operations: [read]}]) {
+  id: ID!
+  skillModelID: ID! @index(name: "bySkillModel")
+  skillModel: SkillModel! @belongsTo(fields: ["skillModelID"])
+  publicUserInfoModelID: ID! @index(name: "byPublicUserInfoModel")
+  publicUserInfoModel: PublicUserInfoModel! @belongsTo(fields: ["publicUserInfoModelID"])
+  #owner: String @auth(rules: [{ allow: owner, operations: [read, delete] }, {allow: private, operations: [read]}])
+}
+
+type UserPossessedSkillModel @model @auth(rules: [{allow: owner}, {allow: private, operations: [read]}]) {
+  id: ID!
+  skillModelID: ID! @index(name: "bySkillModel")
+  skillModel: SkillModel! @belongsTo(fields: ["skillModelID"])
+  publicUserInfoModelID: ID! @index(name: "byPublicUserInfoModel")
+  publicUserInfoModel: PublicUserInfoModel! @belongsTo(fields: ["publicUserInfoModelID"])
+  #owner: String @auth(rules: [{ allow: owner, operations: [read, delete] }, {allow: private, operations: [read]}])
+}
+
+type SkillModel @model @auth(rules: [{allow: public, operations: [read]}, {allow: private, operations: [read]}]) {
+  id: ID!
+  userDesiredSkillModels: [UserDesiredSkillModel!] @hasMany(indexName: "bySkillModel", fields: ["id"])
+  name: String!
+  creator: PublicUserInfoModel @hasOne
+  skillGroupID: ID! @index(name: "bySkillGroup")
+  userPossessedSkillModels: [UserPossessedSkillModel!] @hasMany(indexName: "bySkillModel", fields: ["id"])
+} 
+
+type Subscription {
+  onMessagesByRecID(recipientIDs: String!): Message @aws_subscribe(mutations: ["createMessage"])
+  onMessagesByProID(progressTrackerID: String!): ProgressTrackerMessage @aws_subscribe(mutations: ["createProgressTrackerMessage"])
+  # onUpdateMessage(id: ID): Message @aws_subscribe(mutations: ["updateMessage"])
+  # onDeleteMessage(id: ID): Message @aws_subscribe(mutations: ["deleteMessage"])
+  onGommPuimByPuimID(publicUserInfoModelID: ID!): GroupOfMessagesModelPublicUserInfoModel @aws_subscribe(mutations: ["createGroupOfMessagesModelPublicUserInfoModel"])
+  onCreatePublicUserInfoModel(id: ID): PublicUserInfoModel @aws_subscribe(mutations: ["createPublicUserInfoModel"])
+  onUpdatePublicUserInfoModel(id: ID): PublicUserInfoModel @aws_subscribe(mutations: ["updatePublicUserInfoModel"])
+  onDeletePublicUserInfoModel(id: ID): PublicUserInfoModel @aws_subscribe(mutations: ["deletePublicUserInfoModel"])
+}
