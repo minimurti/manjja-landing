@@ -49,13 +49,13 @@ function App() {
   };
 
   const submitEmail = async (event) => {
-        event.preventDefault();
-    
-        setSuccessMessage('')
-        if (!email.includes('@') || !email.includes('.')) {
-          setSuccessMessage('Please enter a valid email.');
-          return;
-        }
+    event.preventDefault();
+
+    setSuccessMessage('')
+    if (!email.includes('@') || !email.includes('.')) {
+      setSuccessMessage('Please enter a valid email.');
+      return;
+    }
     try {
 
       setLoading(true);
@@ -91,38 +91,38 @@ function App() {
   return (
     <main style={bgstyle}>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-      <img src={logo} alt="Logo" height={100} style={{ marginRight: '10px' }} />
-      <a onClick={showBetaForm} className="getStartedBtn">Beta</a>
-    </div>
+        <img src={logo} alt="Logo" height={100} style={{ marginRight: '10px' }} />
+        <button onClick={showBetaForm} className="getStartedBtn">Beta</button>
+      </div>
       <section className="hero">
-      <h2>
-        Find jobs that will indicate the likelihood<br/>
-        of visa sponsorship
-      </h2>
-      <p>
-        We use AI to validate the job listing’s likelihood<br/>
-        of work visa sponsorship for international students
-      </p>
+        <h2>
+          Find jobs that will indicate the likelihood<br />
+          of visa sponsorship
+        </h2>
+        <p>
+          We use AI to validate the job listing’s likelihood<br />
+          of work visa sponsorship for international students
+        </p>
         <a onClick={showWaitlistForm} className="joinWaitlist">Join Waitlist</a>
         <a onClick={showBetaForm} className="getStartedBtn">Join Beta</a>
       </section>
 
       <section className="images" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <div style={{ textAlign: 'center', margin: '15px' }}>
-        <img src={data} alt="Data" height={130} style={{ width: '110px', height: '110px', margin: '50px' }} />
-        <p>Company’s<br/> historical data </p>
-      </div>
+        <div style={{ textAlign: 'center', margin: '15px' }}>
+          <img src={data} alt="Data" height={130} style={{ width: '110px', height: '110px', margin: '50px' }} />
+          <p>Company’s<br /> historical data </p>
+        </div>
 
-      <div style={{ textAlign: 'center', margin: '15px' }}>
-        <img src={seniority} alt="Seniority" height={130} style={{ width: '110px', height: '110px', margin: '50px' }} />
-        <p>Seniority<br/> level</p>
-      </div>
+        <div style={{ textAlign: 'center', margin: '15px' }}>
+          <img src={seniority} alt="Seniority" height={130} style={{ width: '110px', height: '110px', margin: '50px' }} />
+          <p>Seniority<br /> level</p>
+        </div>
 
-      <div style={{ textAlign: 'center', margin: '15px' }}>
-        <img src={experience} alt="Experience" height={130} style={{ width: '110px', height: '110px', margin: '50px' }} />
-        <p>Experience<br/> level</p>
-      </div>
-    </section>
+        <div style={{ textAlign: 'center', margin: '15px' }}>
+          <img src={experience} alt="Experience" height={130} style={{ width: '110px', height: '110px', margin: '50px' }} />
+          <p>Experience<br /> level</p>
+        </div>
+      </section>
 
       {
         displayBetaForm && (
@@ -130,8 +130,8 @@ function App() {
             <div className="beta-form">
               <button onClick={hideBetaForm} className="exit-button">X</button>
               <form onSubmit={submitPasscode} id="passcodeForm">
-                <input type="text" placeholder="Enter Beta Password" value={passcode} onChange={(e) => setPasscode(e.target.value)} />
-                <button type="submit">Submit</button>
+                <input type="password" placeholder="Enter Beta Passcode" value={passcode} onChange={(e) => setPasscode(e.target.value)} />
+                <button type="submit" className="submitBtn">Submit</button>
                 {showIncorrectPasscode && <p id="incorrectPasscode">Incorrect Passcode</p>}
               </form>
             </div>
@@ -143,9 +143,9 @@ function App() {
         <div className="beta-form-container">
           <div className="beta-form">
             <button onClick={hideWaitlistForm} className="exit-button">X</button>
-            <form onSubmit={submitEmail} id="emailForm">
+            <form onSubmit={submitEmail} id="emailForm" >
               <input type="text" placeholder="Enter Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-              <button type="submit" disabled={loading}>{loading ? 'Loading...' : 'Submit'}</button>
+              <button type="submit" className="submitBtn" disabled={loading}>{loading ? 'Loading...' : 'Submit'}</button>
             </form>
             {successMessage && <p style={{ color: 'blue' }}>{successMessage}</p>}
           </div>
