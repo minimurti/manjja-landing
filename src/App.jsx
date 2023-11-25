@@ -2,7 +2,12 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import blurb from './assets/talent-gradient.png'
+import logo from './assets/intalentLogo.png'
+import data from './assets/data.png'
+import seniority from './assets/seniority.png'
+import experience from './assets/experience.png'
 import './App.css'
+// import './fonts.css';
 
 import { generateClient } from 'aws-amplify/api';
 import { createHillaryClinton } from './graphql/mutations';
@@ -44,8 +49,13 @@ function App() {
   };
 
   const submitEmail = async (event) => {
-    successMessage = ''
-    event.preventDefault();
+        event.preventDefault();
+    
+        setSuccessMessage('')
+        if (!email.includes('@') || !email.includes('.')) {
+          setSuccessMessage('Please enter a valid email.');
+          return;
+        }
     try {
 
       setLoading(true);
@@ -80,12 +90,39 @@ function App() {
 
   return (
     <main style={bgstyle}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <img src={logo} alt="Logo" height={100} style={{ marginRight: '10px' }} />
+      <a onClick={showBetaForm} className="getStartedBtn">Beta</a>
+    </div>
       <section className="hero">
-        <h2>Your Global Career, Amplified</h2>
-        <p>Discover job opportunities with personalized visa insights tailored for you.</p>
-        <button onClick={showBetaForm} className="getStartedBtn">Join Beta</button>
-        <button onClick={showWaitlistForm} className="getStartedBtn">Join Waitlist</button>
+      <h2>
+        Find jobs that will indicate the likelihood<br/>
+        of visa sponsorship
+      </h2>
+      <p>
+        We use AI to validate the job listing’s likelihood<br/>
+        of work visa sponsorship for international students
+      </p>
+        <a onClick={showWaitlistForm} className="joinWaitlist">Join Waitlist</a>
+        <a onClick={showBetaForm} className="getStartedBtn">Join Beta</a>
       </section>
+
+      <section className="images" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <div style={{ textAlign: 'center', margin: '15px' }}>
+        <img src={data} alt="Data" height={130} style={{ width: '110px', height: '110px', margin: '50px' }} />
+        <p>Company’s<br/> historical data </p>
+      </div>
+
+      <div style={{ textAlign: 'center', margin: '15px' }}>
+        <img src={seniority} alt="Seniority" height={130} style={{ width: '110px', height: '110px', margin: '50px' }} />
+        <p>Seniority<br/> level</p>
+      </div>
+
+      <div style={{ textAlign: 'center', margin: '15px' }}>
+        <img src={experience} alt="Experience" height={130} style={{ width: '110px', height: '110px', margin: '50px' }} />
+        <p>Experience<br/> level</p>
+      </div>
+    </section>
 
       {
         displayBetaForm && (
@@ -93,7 +130,7 @@ function App() {
             <div className="beta-form">
               <button onClick={hideBetaForm} className="exit-button">X</button>
               <form onSubmit={submitPasscode} id="passcodeForm">
-                <input type="text" placeholder="Enter Beta Passcode" value={passcode} onChange={(e) => setPasscode(e.target.value)} />
+                <input type="text" placeholder="Enter Beta Password" value={passcode} onChange={(e) => setPasscode(e.target.value)} />
                 <button type="submit">Submit</button>
                 {showIncorrectPasscode && <p id="incorrectPasscode">Incorrect Passcode</p>}
               </form>
@@ -114,32 +151,6 @@ function App() {
           </div>
         </div>
       )}
-
-      <section className="features">
-        <div className="feature">
-          <div className="feature-content">
-            <img src="/assets/image1.jpg" alt="Feature 1" />
-            <h3>Job Listings</h3>
-            <p>Explore a wide array of job listings, each with its specific visa sponsorship likelihood.</p>
-          </div>
-        </div>
-
-        <div className="feature">
-          <div className="feature-content">
-            <img src="image2.jpg" alt="Feature 2" />
-            <h3>AI-Validated Insights</h3>
-            <p>Benefit from our AI-driven analysis providing accurate and tailored visa insights.</p>
-          </div>
-        </div>
-
-        <div className="feature">
-          <div className="feature-content">
-            <img src="image3.jpg" alt="Feature 3" />
-            <h3>Personalized Assessments</h3>
-            <p>Receive customized visa probability assessments tied to individual job opportunities.</p>
-          </div>
-        </div>
-      </section>
     </main >
   );
 }
