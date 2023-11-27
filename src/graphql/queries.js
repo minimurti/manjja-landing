@@ -881,91 +881,6 @@ export const listProgressTrackerMessages = /* GraphQL */ `
     }
   }
 `;
-export const getSchoolModel = /* GraphQL */ `
-  query GetSchoolModel($id: ID!) {
-    getSchoolModel(id: $id) {
-      id
-      domain
-      name
-      shortName
-      logoImageURL
-      city
-      state
-      country
-      lat
-      lon
-      isAdultLevel
-      publicUserInfoModels {
-        items {
-          id
-          typename
-          firstName
-          lastName
-          year
-          major
-          bio
-          lastOpenedProgressTrackerChat
-          photo
-          schoolmodelID
-          unlistedSchoolName
-          lastActive
-          deviceToken
-          channel
-          concatedDesiredSkillIDs
-          concatedPossessedSkillIDs
-          dob
-          isSchoolVerified
-          isPhotoVerified
-          lat
-          lon
-          progressTrackerID
-          createdAt
-          updatedAt
-          progressTrackerMembersId
-          owner
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const listSchoolModels = /* GraphQL */ `
-  query ListSchoolModels(
-    $filter: ModelSchoolModelFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listSchoolModels(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        domain
-        name
-        shortName
-        logoImageURL
-        city
-        state
-        country
-        lat
-        lon
-        isAdultLevel
-        publicUserInfoModels {
-          nextToken
-          __typename
-        }
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
 export const getGroupOfMessagesModel = /* GraphQL */ `
   query GetGroupOfMessagesModel($id: ID!) {
     getGroupOfMessagesModel(id: $id) {
@@ -3644,6 +3559,131 @@ export const listPeabjPasswords = /* GraphQL */ `
       items {
         id
         daPassword
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getJobListing = /* GraphQL */ `
+  query GetJobListing($id: ID!) {
+    getJobListing(id: $id) {
+      id
+      title
+      company
+      location
+      deadline
+      likelihood
+      url
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listJobListings = /* GraphQL */ `
+  query ListJobListings(
+    $filter: ModelJobListingFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listJobListings(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        title
+        company
+        location
+        deadline
+        likelihood
+        url
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getSchoolModel = /* GraphQL */ `
+  query GetSchoolModel($id: ID!) {
+    getSchoolModel(id: $id) {
+      id
+      domain
+      name
+      shortName
+      logoImageURL
+      city
+      state
+      country
+      lat
+      lon
+      isAdultLevel
+      publicUserInfoModels {
+        items {
+          id
+          typename
+          firstName
+          lastName
+          year
+          major
+          bio
+          lastOpenedProgressTrackerChat
+          photo
+          schoolmodelID
+          unlistedSchoolName
+          lastActive
+          deviceToken
+          channel
+          concatedDesiredSkillIDs
+          concatedPossessedSkillIDs
+          dob
+          isSchoolVerified
+          isPhotoVerified
+          lat
+          lon
+          progressTrackerID
+          createdAt
+          updatedAt
+          progressTrackerMembersId
+          owner
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listSchoolModels = /* GraphQL */ `
+  query ListSchoolModels(
+    $filter: ModelSchoolModelFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listSchoolModels(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        domain
+        name
+        shortName
+        logoImageURL
+        city
+        state
+        country
+        lat
+        lon
+        isAdultLevel
+        publicUserInfoModels {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename

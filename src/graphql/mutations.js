@@ -178,6 +178,63 @@ export const deletePeabjPassword = /* GraphQL */ `
     }
   }
 `;
+export const createJobListing = /* GraphQL */ `
+  mutation CreateJobListing(
+    $input: CreateJobListingInput!
+    $condition: ModelJobListingConditionInput
+  ) {
+    createJobListing(input: $input, condition: $condition) {
+      id
+      title
+      company
+      location
+      deadline
+      likelihood
+      url
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateJobListing = /* GraphQL */ `
+  mutation UpdateJobListing(
+    $input: UpdateJobListingInput!
+    $condition: ModelJobListingConditionInput
+  ) {
+    updateJobListing(input: $input, condition: $condition) {
+      id
+      title
+      company
+      location
+      deadline
+      likelihood
+      url
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteJobListing = /* GraphQL */ `
+  mutation DeleteJobListing(
+    $input: DeleteJobListingInput!
+    $condition: ModelJobListingConditionInput
+  ) {
+    deleteJobListing(input: $input, condition: $condition) {
+      id
+      title
+      company
+      location
+      deadline
+      likelihood
+      url
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const updateHillaryClinton = /* GraphQL */ `
   mutation UpdateHillaryClinton(
     $input: UpdateHillaryClintonInput!

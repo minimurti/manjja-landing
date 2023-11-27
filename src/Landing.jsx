@@ -1,18 +1,17 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useNavigate } from 'react-router-dom';
 import blurb from './assets/talent-gradient.png'
-import logo from './assets/intalentLogo.png'
+import logo from './assets/inTalentLogoWhite.png'
 import data from './assets/data.png'
 import seniority from './assets/seniority.png'
 import experience from './assets/experience.png'
-import './App.css'
+import './Landing.css'
 // import './fonts.css';
 
 import { generateClient } from 'aws-amplify/api';
 import { createHillaryClinton } from './graphql/mutations';
 
-function App() {
+function Landing() {
   const [displayBetaForm, setDisplayBetaForm] = useState(false);
   const [displayWaitlistForm, setDisplayWaitlistForm] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -20,6 +19,9 @@ function App() {
   const [email, setEmail] = useState('');
   const [showIncorrectPasscode, setShowIncorrectPasscode] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
+
+  const navigate = useNavigate();
+
 
   const showBetaForm = () => {
     setDisplayBetaForm(true);
@@ -39,13 +41,14 @@ function App() {
 
   const submitPasscode = async (event) => {
     event.preventDefault();
-    try {
-      const passcodeQueryResponse = await API.graphql(graphqlOperation(yourGraphQLQuery, { passcode }));
-      // Handle response accordingly
-    } catch (error) {
+
+    if (passcode == 'easy2hack') {
+      navigate('/list')
+    } else {
       setShowIncorrectPasscode(true);
-      // Handle incorrect passcode scenario
     }
+
+
   };
 
   const submitEmail = async (event) => {
@@ -155,4 +158,4 @@ function App() {
   );
 }
 
-export default App
+export default Landing

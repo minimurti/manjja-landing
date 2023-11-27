@@ -11,8 +11,8 @@ li {
 @font-face {
   font-family: 'League Spartan';
   src: url('/fonts/leaguespartan-bold.woff2') format('woff2'),
-       url('/fonts/leaguespartan-bold.woff') format('woff'),
-       url('/fonts/leaguespartan-bold.ttf') format('truetype');
+    url('/fonts/leaguespartan-bold.woff') format('woff'),
+    url('/fonts/leaguespartan-bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -28,12 +28,12 @@ li {
   background-color: #fff;
   color: #14abd0;
   text-decoration: none;
-  border-radius: 25px; 
+  border-radius: 25px;
   transition: background-color 0.3s;
 }
 
 
-#joinWaitlist{
+#joinWaitlist {
 
   display: inline-block;
   padding: 10px 20px;
@@ -56,7 +56,9 @@ li {
   box-sizing: border-box;
 }
 
-a { cursor: pointer; }
+a {
+  cursor: pointer;
+}
 
 #passcodeSubmit {
   padding: 10px 20px;

@@ -3060,171 +3060,6 @@ export const onDeleteProgressTrackerMessage = /* GraphQL */ `
     }
   }
 `;
-export const onCreateSchoolModel = /* GraphQL */ `
-  subscription OnCreateSchoolModel(
-    $filter: ModelSubscriptionSchoolModelFilterInput
-  ) {
-    onCreateSchoolModel(filter: $filter) {
-      id
-      domain
-      name
-      shortName
-      logoImageURL
-      city
-      state
-      country
-      lat
-      lon
-      isAdultLevel
-      publicUserInfoModels {
-        items {
-          id
-          typename
-          firstName
-          lastName
-          year
-          major
-          bio
-          lastOpenedProgressTrackerChat
-          photo
-          schoolmodelID
-          unlistedSchoolName
-          lastActive
-          deviceToken
-          channel
-          concatedDesiredSkillIDs
-          concatedPossessedSkillIDs
-          dob
-          isSchoolVerified
-          isPhotoVerified
-          lat
-          lon
-          progressTrackerID
-          createdAt
-          updatedAt
-          progressTrackerMembersId
-          owner
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onUpdateSchoolModel = /* GraphQL */ `
-  subscription OnUpdateSchoolModel(
-    $filter: ModelSubscriptionSchoolModelFilterInput
-  ) {
-    onUpdateSchoolModel(filter: $filter) {
-      id
-      domain
-      name
-      shortName
-      logoImageURL
-      city
-      state
-      country
-      lat
-      lon
-      isAdultLevel
-      publicUserInfoModels {
-        items {
-          id
-          typename
-          firstName
-          lastName
-          year
-          major
-          bio
-          lastOpenedProgressTrackerChat
-          photo
-          schoolmodelID
-          unlistedSchoolName
-          lastActive
-          deviceToken
-          channel
-          concatedDesiredSkillIDs
-          concatedPossessedSkillIDs
-          dob
-          isSchoolVerified
-          isPhotoVerified
-          lat
-          lon
-          progressTrackerID
-          createdAt
-          updatedAt
-          progressTrackerMembersId
-          owner
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onDeleteSchoolModel = /* GraphQL */ `
-  subscription OnDeleteSchoolModel(
-    $filter: ModelSubscriptionSchoolModelFilterInput
-  ) {
-    onDeleteSchoolModel(filter: $filter) {
-      id
-      domain
-      name
-      shortName
-      logoImageURL
-      city
-      state
-      country
-      lat
-      lon
-      isAdultLevel
-      publicUserInfoModels {
-        items {
-          id
-          typename
-          firstName
-          lastName
-          year
-          major
-          bio
-          lastOpenedProgressTrackerChat
-          photo
-          schoolmodelID
-          unlistedSchoolName
-          lastActive
-          deviceToken
-          channel
-          concatedDesiredSkillIDs
-          concatedPossessedSkillIDs
-          dob
-          isSchoolVerified
-          isPhotoVerified
-          lat
-          lon
-          progressTrackerID
-          createdAt
-          updatedAt
-          progressTrackerMembersId
-          owner
-          __typename
-        }
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
 export const onCreateGroupOfMessagesModel = /* GraphQL */ `
   subscription OnCreateGroupOfMessagesModel(
     $filter: ModelSubscriptionGroupOfMessagesModelFilterInput
@@ -6171,6 +6006,225 @@ export const onDeletePeabjPassword = /* GraphQL */ `
     onDeletePeabjPassword(filter: $filter) {
       id
       daPassword
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onCreateJobListing = /* GraphQL */ `
+  subscription OnCreateJobListing(
+    $filter: ModelSubscriptionJobListingFilterInput
+  ) {
+    onCreateJobListing(filter: $filter) {
+      id
+      title
+      company
+      location
+      deadline
+      likelihood
+      url
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateJobListing = /* GraphQL */ `
+  subscription OnUpdateJobListing(
+    $filter: ModelSubscriptionJobListingFilterInput
+  ) {
+    onUpdateJobListing(filter: $filter) {
+      id
+      title
+      company
+      location
+      deadline
+      likelihood
+      url
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteJobListing = /* GraphQL */ `
+  subscription OnDeleteJobListing(
+    $filter: ModelSubscriptionJobListingFilterInput
+  ) {
+    onDeleteJobListing(filter: $filter) {
+      id
+      title
+      company
+      location
+      deadline
+      likelihood
+      url
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onCreateSchoolModel = /* GraphQL */ `
+  subscription OnCreateSchoolModel(
+    $filter: ModelSubscriptionSchoolModelFilterInput
+  ) {
+    onCreateSchoolModel(filter: $filter) {
+      id
+      domain
+      name
+      shortName
+      logoImageURL
+      city
+      state
+      country
+      lat
+      lon
+      isAdultLevel
+      publicUserInfoModels {
+        items {
+          id
+          typename
+          firstName
+          lastName
+          year
+          major
+          bio
+          lastOpenedProgressTrackerChat
+          photo
+          schoolmodelID
+          unlistedSchoolName
+          lastActive
+          deviceToken
+          channel
+          concatedDesiredSkillIDs
+          concatedPossessedSkillIDs
+          dob
+          isSchoolVerified
+          isPhotoVerified
+          lat
+          lon
+          progressTrackerID
+          createdAt
+          updatedAt
+          progressTrackerMembersId
+          owner
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateSchoolModel = /* GraphQL */ `
+  subscription OnUpdateSchoolModel(
+    $filter: ModelSubscriptionSchoolModelFilterInput
+  ) {
+    onUpdateSchoolModel(filter: $filter) {
+      id
+      domain
+      name
+      shortName
+      logoImageURL
+      city
+      state
+      country
+      lat
+      lon
+      isAdultLevel
+      publicUserInfoModels {
+        items {
+          id
+          typename
+          firstName
+          lastName
+          year
+          major
+          bio
+          lastOpenedProgressTrackerChat
+          photo
+          schoolmodelID
+          unlistedSchoolName
+          lastActive
+          deviceToken
+          channel
+          concatedDesiredSkillIDs
+          concatedPossessedSkillIDs
+          dob
+          isSchoolVerified
+          isPhotoVerified
+          lat
+          lon
+          progressTrackerID
+          createdAt
+          updatedAt
+          progressTrackerMembersId
+          owner
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteSchoolModel = /* GraphQL */ `
+  subscription OnDeleteSchoolModel(
+    $filter: ModelSubscriptionSchoolModelFilterInput
+  ) {
+    onDeleteSchoolModel(filter: $filter) {
+      id
+      domain
+      name
+      shortName
+      logoImageURL
+      city
+      state
+      country
+      lat
+      lon
+      isAdultLevel
+      publicUserInfoModels {
+        items {
+          id
+          typename
+          firstName
+          lastName
+          year
+          major
+          bio
+          lastOpenedProgressTrackerChat
+          photo
+          schoolmodelID
+          unlistedSchoolName
+          lastActive
+          deviceToken
+          channel
+          concatedDesiredSkillIDs
+          concatedPossessedSkillIDs
+          dob
+          isSchoolVerified
+          isPhotoVerified
+          lat
+          lon
+          progressTrackerID
+          createdAt
+          updatedAt
+          progressTrackerMembersId
+          owner
+          __typename
+        }
+        nextToken
+        __typename
+      }
       createdAt
       updatedAt
       __typename

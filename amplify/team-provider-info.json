@@ -18,7 +18,8 @@
           "Name": "peabj-prod",
           "Id": "4cdfa26bf64b4eb5852631f16fedbacc",
           "Region": "us-east-1"
-        }
+        },
+        "peabj": {}
       },
       "notifications": {
         "Pinpoint": {
@@ -38,6 +39,10 @@
       },
       "storage": {
         "s3peabjstoragec7d4bf34": {}
+      },
+      "api": {
+        "peabj": {},
+        "peabjREST": {}
       }
     }
   }

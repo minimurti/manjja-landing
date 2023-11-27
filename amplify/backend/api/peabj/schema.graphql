@@ -42,6 +42,17 @@ type PeabjPassword @model @auth(rules: [{allow: public, operations: [read]}, {al
   daPassword: String!
 } 
 
+type JobListing @model @auth(rules: [{allow: public, operations: [read]}, {allow: private, operations: [read, create]}]) {
+  id: ID!
+  title: String
+  company: String #TODO, ref other Model
+  location: String #TODO, ref other Location Model
+  deadline: String
+  likelihood: Float
+  url: String
+} 
+
+
 type HillaryClinton @model @auth(rules: [{allow: public, operations: [create]}, {allow: private, operations: [create]}]) {
   id: ID!
   email: String!
@@ -90,7 +101,7 @@ type ProgressTrackerMessage @model(timestamps: { createdAt: "createdAt", updated
   #owner: String @auth(rules: [{ allow: owner, operations: [read, delete]},  {allow: private, operations: [read]}])
 }
 
-type SchoolModel @model @auth(rules: [{allow: private, operations: [read]}]) {
+type SchoolModel @model @auth(rules: [{allow: public, operations: [read]}, {allow: private, operations: [read]}]) {
   id: ID!
   domain: ID!
   name: String! @index(name: "byName")
