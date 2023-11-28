@@ -144,8 +144,12 @@ body {
   position: relative;
   /* Set body to relative positioning */
   overflow-x: hidden;
+  background-color: #29152e;
+  color: #EBEAEA;
   /* Hide horizontal overflow */
 }
+
+
 
 /* Your existing styles */
 
