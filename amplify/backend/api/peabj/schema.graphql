@@ -48,7 +48,9 @@ type JobListing @model @auth(rules: [{allow: public, operations: [read]}, {allow
   company: String #TODO, ref other Model
   location: String #TODO, ref other Location Model
   deadline: String
+  description: String
   likelihood: Float
+  justification: String
   url: String
 } 
 

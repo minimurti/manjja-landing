@@ -99,11 +99,11 @@ function JobList() {
                     <div className="job-card" key={job.id}>
                       <div className="likelihood-section" style={{ color: getLikelihoodColor(job.likelihood) }}>
                         <p className="likelihood-text">{`${(job.likelihood * 100).toFixed(0)}%`}</p>
-                        <p className="likelihood-desc">likelihood of visa sponsorship</p>
+                        <p className="likelihood-desc">{job.justification ?? "likelihood to sponsor visa"}</p>
                       </div>
                       <div className="middle-section">
-                        <h3>{job.title}</h3>
-                        <p>{job.company}</p>
+                        <h2>{job.title}</h2>
+                        <h4>{job.company}</h4>
                         {job.description && <p>{job.description}</p>}
                       </div>
                       <div className="apply-section">

@@ -189,7 +189,9 @@ export const createJobListing = /* GraphQL */ `
       company
       location
       deadline
+      description
       likelihood
+      justification
       url
       createdAt
       updatedAt
@@ -208,7 +210,9 @@ export const updateJobListing = /* GraphQL */ `
       company
       location
       deadline
+      description
       likelihood
+      justification
       url
       createdAt
       updatedAt
@@ -227,7 +231,9 @@ export const deleteJobListing = /* GraphQL */ `
       company
       location
       deadline
+      description
       likelihood
+      justification
       url
       createdAt
       updatedAt

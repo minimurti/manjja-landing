@@ -3576,7 +3576,9 @@ export const getJobListing = /* GraphQL */ `
       company
       location
       deadline
+      description
       likelihood
+      justification
       url
       createdAt
       updatedAt
@@ -3597,7 +3599,9 @@ export const listJobListings = /* GraphQL */ `
         company
         location
         deadline
+        description
         likelihood
+        justification
         url
         createdAt
         updatedAt

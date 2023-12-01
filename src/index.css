@@ -217,13 +217,25 @@ nav ul li a .btn {
 }
 
 main {
-  height: 1000px;
-  background-image: url('assets/talent-gradient.png');
+  height: 2000px;
+  /* background-image: url('assets/talent-gradient.png'); */
   background-position: center, center;
   background-size: contain;
   color: #fff;
   background-attachment: fixed;
   background-repeat: no-repeat;
+
+}
+
+#bg-image {
+  z-index: -1;
+  position: absolute;
+  background-position: center, center;
+  background-size: contain;
+  color: #fff;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-image: url('assets/talent-gradient.png');
 }
 
 /* ... previous CSS styles ... */

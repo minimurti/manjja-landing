@@ -8,6 +8,47 @@ li {
   padding: 0;
 }
 
+
+.scroll-box {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  /* width: 200px; */
+  width: 75vw;
+  height: 1000px;
+  background-color: rgba(40, 69, 106, 0.8);
+  /* Translucent background */
+  color: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  position: relative;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #fff;
+  /* White rounded border */
+}
+
+.scroll-box.show {
+  opacity: 1;
+}
+
+.scroll-box img {
+  width: 80px;
+  /* Adjust size as needed */
+  height: 80px;
+  /* Adjust size as needed */
+  object-fit: cover;
+  border-radius: 50%;
+  /* Creates a circular image */
+  margin-bottom: 20px;
+  /* Space between image and text */
+}
+
 @font-face {
   font-family: 'League Spartan';
   src: url('/fonts/leaguespartan-bold.woff2') format('woff2'),
@@ -77,6 +118,17 @@ a {
 #incorrectPasscode {
   color: #ff0000;
   margin-top: 10px;
+}
+
+#bg-image {
+  z-index: -1;
+  position: absolute;
+  background-position: center, center;
+  background-size: contain;
+  color: #fff;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-image: url('assets/talent-gradient.png');
 }
 
 .beta-form-container {
@@ -172,15 +224,6 @@ nav ul li a .btn {
   color: #eee;
 }
 
-main {
-  height: 100px;
-  background-image: url('assets/talent-gradient.png');
-  background-position: center, center;
-  background-size: contain;
-  color: #fff;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-}
 
 /* ... previous CSS styles ... */
 
