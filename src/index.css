@@ -227,17 +227,6 @@ main {
 
 }
 
-#bg-image {
-  z-index: -1;
-  position: absolute;
-  background-position: center, center;
-  background-size: contain;
-  color: #fff;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-image: url('assets/talent-gradient.png');
-}
-
 /* ... previous CSS styles ... */
 
 /* ... previous CSS styles ... */
@@ -297,9 +286,15 @@ main {
 
 
 .hero h2 {
-  font-size: 70;
+  font-size: 40pt;
   margin-bottom: 20px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 1068px) {
+  .hero h2 {
+    font-size: 20pt;
+  }
 }
 
 .btn {

@@ -4,6 +4,7 @@ import blurb from './assets/talent-gradient.png'
 import logo from './assets/inTalentLogoWhite.png'
 import data from './assets/data.png'
 import seniority from './assets/seniority.png'
+import worldMap from './assets/map.png'
 import experience from './assets/experience.png'
 import './Landing.css'
 // import './fonts.css';
@@ -22,14 +23,33 @@ function Landing() {
 
   const [showScrollBox, setShowScrollBox] = useState(false);
   const [showScrollBox2, setShowScrollBox2] = useState(false);
+  const [worldShiftAmount, setWorldShiftAmount] = useState(0);
+  const [typingDone, setTypingDone] = useState(false);
+  const [eeWidth, setEEWidth] = useState(0.0);
+
+  var isTypingEE = false;
+
+  function typeLetters(i) {
+    if (i <= 20) {
+      setTimeout(function () {
+        setEEWidth(i * 7)
+        typeLetters(i + 1);
+      }, 50)
+    }
+  }
 
   useEffect(() => {
-    function handleScroll() {
+
+    async function handleScroll() {
       const scrollPosition = window.scrollY + window.innerHeight;
       const triggerOffset = document.getElementById('scrollBox').offsetTop;
+      const heightRelative = window.innerHeight;
       const triggerOffset2 = document.getElementById('scrollBox2').offsetTop; // Change 'main' to the ID of the parent element
 
       if (scrollPosition > triggerOffset) {
+        //"165" being the max potential shift desired multiplied by the difference of scroll position to top of div, divided by total window height
+        setWorldShiftAmount(-165 * ((scrollPosition - triggerOffset) / heightRelative))
+        //console.log(50 * ((scrollPosition - triggerOffset) / heightRelative))
         setShowScrollBox(true);
       } else {
         setShowScrollBox(false);
@@ -37,7 +57,17 @@ function Landing() {
 
       if (scrollPosition > triggerOffset2) {
         setShowScrollBox2(true);
+        setTimeout(() => {
+          setTypingDone(true);
+        }, 1100); // Duration of typing animation (3 seconds in this example)
+        if (!isTypingEE) {
+          isTypingEE = true
+          typeLetters(1)
+        }
       } else {
+        setTypingDone(false)
+        setEEWidth(0)
+        isTypingEE = false;
         setShowScrollBox2(false);
       }
     }
@@ -60,6 +90,7 @@ function Landing() {
   };
 
   const showWaitlistForm = () => {
+    console.log('I ran')
     setDisplayWaitlistForm(true);
   };
 
@@ -124,7 +155,7 @@ function Landing() {
     height: '100%',
     zIndex: -1,
     transition: 'opacity 0.5s ease',
-    opacity: showScrollBox ? 0 : 1,
+    opacity: showScrollBox ? 0.25 : 1,
     /* Add other styles for background size, position, etc. */
   };
 
@@ -148,36 +179,33 @@ function Landing() {
           <a onClick={showBetaForm} className="getStartedBtn">Join Beta</a>
         </section>
 
-        <section className="images" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <section className="images" style={{ display: 'flex', justifyContent: 'center' }}>
           <div style={{ textAlign: 'center', margin: '15px' }}>
-            <img src={data} alt="Data" height={130} style={{ width: '110px', height: '110px', margin: '50px' }} />
+            <img src={data} alt="Data" />
             <p>Company’s<br /> historical data </p>
           </div>
 
           <div style={{ textAlign: 'center', margin: '15px' }}>
-            <img src={seniority} alt="Seniority" height={130} style={{ width: '110px', height: '110px', margin: '50px' }} />
+            <img src={seniority} alt="Seniority" />
             <p>Seniority<br /> level</p>
           </div>
 
           <div style={{ textAlign: 'center', margin: '15px' }}>
-            <img src={experience} alt="Experience" height={130} style={{ width: '110px', height: '110px', margin: '50px' }} />
+            <img src={experience} alt="Experience" />
             <p>Experience<br /> level</p>
           </div>
         </section>
 
         <div
           id="scrollBox"
-          className={`scroll-box ${showScrollBox ? 'show' : ''}`}
-        >
-          <img src={seniority} alt="Seniority" height={130} style={{ width: '110px', height: '110px', margin: '50px' }} />
-          <h1>The Intalent Mission</h1>
+          className={`scroll-box ${showScrollBox ? 'show' : ''}`}>
+          <div style={{ width: '220px', height: '220px', margin: '30px', overflow: 'hidden', borderRadius: '100%', border: '1.5px solid #fff' }}>
+            <img src={worldMap} style={{ position: 'relative', height: '220px', left: worldShiftAmount + 'px' }} />
+          </div>
+          <h1>Find Visa Sponsornig Jobs</h1>
           <p>
             <br></br>
-            IDFK ... This oaeutaoeu aoeu aoeu aoeuthaoeuth aoetuh aoetuh aoetuh aoetuh aoetuh aoetuhthethueu ahoeu taoeu
-            This oaeutaoeu aoeu aoeu aoeuthaoeuth aoetuh aoetuh aoetuh aoetuh aoetuh aoetuhthethueu ahoeu taoeu
-            This oaeutaoeu aoeu aoeu aoeuthaoeuth aoetuh aoetuh aoetuh aoetuh aoetuh aoetuhthethueu ahoeu taoeu
-            This oaeutaoeu aoeu aoeu aoeuthaoeuth aoetuh aoetuh aoetuh aoetuh aoetuh aoetuhthethueu ahoeu taoeu
-            This oaeutaoeu aoeu aoeu aoeuthaoeuth aoetuh aoetuh aoetuh aoetuh aoetuh aoetuhthethueu ahoeu taoeu
+            We develop an AI model that browses in real time all job postings to evaluate their likelihood of work visa sponsorship for international students and visa-dependent applicants.
           </p>
         </div>
 
@@ -188,16 +216,80 @@ function Landing() {
           }}
           className={`scroll-box ${showScrollBox2 ? 'show' : ''}`}
         >
-          <img src={seniority} alt="Seniority" height={130} style={{ width: '110px', height: '110px', margin: '50px' }} />
-          <h1>The Intalent Purpose</h1>
-          <p>
-            <br></br>
-            IDFK ... This oaeutaoeu aoeu aoeu aoeuthaoeuth aoetuh aoetuh aoetuh aoetuh aoetuh aoetuhthethueu ahoeu taoeu
-            This oaeutaoeu aoeu aoeu aoeuthaoeuth aoetuh aoetuh aoetuh aoetuh aoetuh aoetuhthethueu ahoeu taoeu
-            This oaeutaoeu aoeu aoeu aoeuthaoeuth aoetuh aoetuh aoetuh aoetuh aoetuh aoetuhthethueu ahoeu taoeu
-            This oaeutaoeu aoeu aoeu aoeuthaoeuth aoetuh aoetuh aoetuh aoetuh aoetuh aoetuhthethueu ahoeu taoeu
-            This oaeutaoeu aoeu aoeu aoeuthaoeuth aoetuh aoetuh aoetuh aoetuh aoetuh aoetuhthethueu ahoeu taoeu
+
+          <h1>How you find jobs</h1>
+
+          <br></br>
+
+
+          <div>
+          </div>
+          <div className={`search-box ${typingDone ? 'typing-done' : ''}`}>
+            <span className="typing-text" style={{ width: eeWidth + '%' }}> 🔎 Electrical Engineer </span>
+          </div>
+
+          <div className={`job-card ${typingDone ? 'show-card' : ''}`} style={{ scale: '0.66' }}>
+            <div className="likelihood-section" style={{ color: 'rgb(9, 188, 105)' }}>
+              <p className="likelihood-text">95%</p>
+              <p className="likelihood-desc">Similar Level and Fields Accepted</p>
+            </div>
+            <div className="middle-section">
+              <h2>Deposit Management Entry Level</h2>
+              <h4>CIBC</h4>
+              <p>Support the daily activities within the Deposit Operations a....</p>
+            </div>
+            <div className="apply-section">
+              <a rel="noopener noreferrer" className="apply-button" style={{ backgroundColor: 'rgb(41, 21, 46)', color: 'white' }}>Apply</a>
+            </div>
+          </div>
+
+          <p style={{ padding: 30 }}>
+            Simply Lookup the position you desire and we will provide unique likeyhood, not only based on the companies rank and history for sponsorship, but the likelyhood of that specific listing in accordance to, field, seniority, time of year, and dozens of other factors
           </p>
+
+
+        </div>
+
+
+        <div
+          id="scrollBox3"
+          style={{
+            marginTop: '100px',
+          }}
+          className={`scroll-box ${showScrollBox2 ? 'show' : ''}`}
+        >
+          <img src={experience} alt="Seniority" height={130} style={{ width: '110px', height: '110px', margin: '50px' }} />
+          <h1>How we evaluates jobs</h1>
+
+          <br></br>
+          <ul style={{ padding: 30 }}>
+            <li>
+              Intalent scans job postings (~2,000 a day) in real time, using AI to assess visa sponsorship likelihood.
+            </li>
+            <li>
+              After validation, we manually check the accuracy of the validated likelihood of each job posting’s
+            </li>
+            <li>
+              Confirmed visa sponsorship jobs are then posted on the Intalent website
+            </li>
+          </ul>
+
+        </div>
+
+
+        <div
+          id="scrollBox4"
+          style={{
+            marginTop: '100px',
+            marginBottom: '300px',
+            border: 'none',
+            background: 'none',
+            zIndex: 2
+          }}
+          className={`scroll-box ${showScrollBox2 ? 'show' : ''}`}
+        >
+          <h2>Want to find our more?</h2>
+          <a onClick={showWaitlistForm} className="getStartedBtn" style={{ zIndex: 2 }}>Join Waitlist</a>
         </div>
 
         {
