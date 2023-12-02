@@ -137,6 +137,7 @@ li {
 }
 
 body {
+  margin: 0 auto;
   font-family: Arial, sans-serif;
   background-color: #111;
   color: #eee;
@@ -217,6 +218,8 @@ nav ul li a .btn {
 }
 
 main {
+  display: inline-block;
+
   height: 2000px;
   /* background-image: url('assets/talent-gradient.png'); */
   background-position: center, center;
@@ -243,7 +246,7 @@ main {
 /* ... previous CSS styles ... */
 
 .hero {
-  width: 100vw;
+
   height: 325px;
   background-size: 400px;
   text-align: center;

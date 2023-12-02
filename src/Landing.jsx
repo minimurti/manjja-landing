@@ -218,7 +218,12 @@ function Landing() {
           id="scrollBox"
           className={`scroll-box ${showScrollBox ? 'show' : ''}`}>
           <div style={{ width: '220px', height: '220px', margin: '30px', overflow: 'hidden', borderRadius: '100%', border: '1.5px solid #fff' }}>
-            <img src={worldMap} style={{ position: 'relative', height: '220px', left: worldShiftAmount + 'px' }} />
+            <img src={worldMap} style={{
+              transition: 'left 0.1s ease',
+              position: 'relative',
+              height: '220px',
+              left: worldShiftAmount + 'px'
+            }} />
           </div>
           <h1>Find Visa Sponsornig Jobs</h1>
           <p>

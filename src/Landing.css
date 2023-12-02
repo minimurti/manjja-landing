@@ -39,7 +39,36 @@ input::placeholder {
   margin: 50px;
 }
 
+.scroll-box {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  /* width: 200px; */
+  width: 65vw;
+  height: 500px;
+  background-color: rgba(40, 69, 106, 0.2);
+  /* Translucent background */
+  color: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  position: relative;
+  top: 27%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #fff;
+  /* White rounded border */
+}
+
 @media screen and (max-width: 1068px) {
+
+  .images {
+    margin-top: 30px;
+  }
+
   .images img {
     width: 40px;
     height: 40px;
@@ -98,29 +127,7 @@ input::placeholder {
 }
 
 
-.scroll-box {
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  /* width: 200px; */
-  width: 65vw;
-  height: 500px;
-  background-color: rgba(40, 69, 106, 0.2);
-  /* Translucent background */
-  color: #fff;
-  border-radius: 15px;
-  padding: 20px;
-  position: relative;
-  top: 27%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid #fff;
-  /* White rounded border */
-}
+
 
 .search-box {
   opacity: 1;
@@ -331,7 +338,7 @@ nav ul li a .btn {
 /* ... previous CSS styles ... */
 
 .hero {
-  width: 100vw;
+
   height: 100px;
   background-size: 100px;
   text-align: center;
