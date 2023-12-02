@@ -23,6 +23,8 @@ function Landing() {
 
   const [showScrollBox, setShowScrollBox] = useState(false);
   const [showScrollBox2, setShowScrollBox2] = useState(false);
+  const [showScrollBox3, setShowScrollBox3] = useState(false);
+  const [showScrollBox4, setShowScrollBox4] = useState(false);
   const [worldShiftAmount, setWorldShiftAmount] = useState(0);
   const [typingDone, setTypingDone] = useState(false);
   const [eeWidth, setEEWidth] = useState(0.0);
@@ -44,7 +46,9 @@ function Landing() {
       const scrollPosition = window.scrollY + window.innerHeight;
       const triggerOffset = document.getElementById('scrollBox').offsetTop;
       const heightRelative = window.innerHeight;
-      const triggerOffset2 = document.getElementById('scrollBox2').offsetTop; // Change 'main' to the ID of the parent element
+      const triggerOffset2 = document.getElementById('scrollBox2').offsetTop;
+      const triggerOffset3 = document.getElementById('scrollBox3').offsetTop;
+      const triggerOffset4 = document.getElementById('scrollBox4').offsetTop; // Change 'main' to the ID of the parent element
 
       if (scrollPosition > triggerOffset) {
         //"165" being the max potential shift desired multiplied by the difference of scroll position to top of div, divided by total window height
@@ -69,6 +73,20 @@ function Landing() {
         setEEWidth(0)
         isTypingEE = false;
         setShowScrollBox2(false);
+      }
+
+      if (scrollPosition > triggerOffset3) {
+        //"165" being the max potential shift desired multiplied by the difference of scroll position to top of div, divided by total window height
+        setShowScrollBox3(true);
+      } else {
+        setShowScrollBox3(false);
+      }
+
+      if (scrollPosition > triggerOffset4) {
+        //"165" being the max potential shift desired multiplied by the difference of scroll position to top of div, divided by total window height
+        setShowScrollBox4(true);
+      } else {
+        setShowScrollBox4(false);
       }
     }
 
@@ -212,7 +230,8 @@ function Landing() {
         <div
           id="scrollBox2"
           style={{
-            marginTop: '100px',
+            marginTop: '300px',
+            height: '1050px',
           }}
           className={`scroll-box ${showScrollBox2 ? 'show' : ''}`}
         >
@@ -228,7 +247,7 @@ function Landing() {
             <span className="typing-text" style={{ width: eeWidth + '%' }}> 🔎 Electrical Engineer </span>
           </div>
 
-          <div className={`job-card ${typingDone ? 'show-card' : ''}`} style={{ scale: '0.66' }}>
+          <div className={`job-card-example ${typingDone ? 'show-card' : ''}`} style={{ scale: '0.66' }}>
             <div className="likelihood-section" style={{ color: 'rgb(9, 188, 105)' }}>
               <p className="likelihood-text">95%</p>
               <p className="likelihood-desc">Similar Level and Fields Accepted</p>
@@ -255,8 +274,9 @@ function Landing() {
           id="scrollBox3"
           style={{
             marginTop: '100px',
+            height: '750px',
           }}
-          className={`scroll-box ${showScrollBox2 ? 'show' : ''}`}
+          className={`scroll-box ${showScrollBox3 ? 'show' : ''}`}
         >
           <img src={experience} alt="Seniority" height={130} style={{ width: '110px', height: '110px', margin: '50px' }} />
           <h1>How we evaluates jobs</h1>
@@ -282,11 +302,13 @@ function Landing() {
           style={{
             marginTop: '100px',
             marginBottom: '300px',
+            paddingBottom: '100px',
             border: 'none',
             background: 'none',
+            height: '750px',
             zIndex: 2
           }}
-          className={`scroll-box ${showScrollBox2 ? 'show' : ''}`}
+          className={`scroll-box ${showScrollBox4 ? 'show' : ''}`}
         >
           <h2>Want to find our more?</h2>
           <a onClick={showWaitlistForm} className="getStartedBtn" style={{ zIndex: 2 }}>Join Waitlist</a>
