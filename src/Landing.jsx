@@ -52,7 +52,9 @@ function Landing() {
 
       if (scrollPosition > triggerOffset) {
         //"165" being the max potential shift desired multiplied by the difference of scroll position to top of div, divided by total window height
-        setWorldShiftAmount(-165 * ((scrollPosition - triggerOffset) / heightRelative))
+        if (worldShiftAmount == 0 || ((worldShiftAmount + 165 * ((scrollPosition - triggerOffset) / heightRelative)) > 10)) {
+          setWorldShiftAmount(-165 * ((scrollPosition - triggerOffset) / heightRelative))
+        }
         //console.log(50 * ((scrollPosition - triggerOffset) / heightRelative))
         setShowScrollBox(true);
       } else {
@@ -219,7 +221,6 @@ function Landing() {
           className={`scroll-box ${showScrollBox ? 'show' : ''}`}>
           <div style={{ width: '220px', height: '220px', margin: '30px', overflow: 'hidden', borderRadius: '100%', border: '1.5px solid #fff' }}>
             <img src={worldMap} style={{
-              transition: 'left 0.1s ease',
               position: 'relative',
               height: '220px',
               left: worldShiftAmount + 'px'
