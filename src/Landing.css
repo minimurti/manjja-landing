@@ -33,10 +33,15 @@ input::placeholder {
   color: #999;
 }
 
+
 .images img {
+  line-height: 1;
   width: 110px;
   height: 110px;
-  margin: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
+  padding-bottom: 30px;
+  padding-top: 60px;
 }
 
 .scroll-box {
@@ -66,7 +71,7 @@ input::placeholder {
 @media screen and (max-width: 1068px) {
 
   .images {
-    margin-top: 30px;
+    margin-top: 10px;
   }
 
   .images img {
@@ -174,7 +179,7 @@ input::placeholder {
 #joinWaitlist {
 
   display: inline-block;
-  padding: 10px 20px;
+  padding: 10px 10px;
   margin: 20px;
   color: #fff;
   text-decoration: none;
@@ -338,10 +343,10 @@ nav ul li a .btn {
 /* ... previous CSS styles ... */
 
 .hero {
-
-  height: 100px;
+  line-height: 1.1;
   background-size: 100px;
   text-align: center;
+  margin-top: 30px;
   padding: 30;
   /* Keep the padding for the hero section */
   /* background-image: url('talent-gradient.png');
@@ -356,9 +361,9 @@ nav ul li a .btn {
 .images {
   width: 100vw;
   height: 100px;
-  background-size: 400px;
+  background-size: 200px;
   text-align: center;
-  padding: 20;
+  padding: 30;
   color: #fff;
   background-attachment: fixed;
   background-repeat: no-repeat;

@@ -96,7 +96,7 @@ li {
 
 .beta-form {
   background-color: #fff;
-  padding: 40px;
+  padding: 0px;
   border-radius: 15px;
   text-align: center;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
@@ -219,7 +219,7 @@ nav ul li a .btn {
 
 main {
   display: inline-block;
-
+  line-height: 1.1;
   height: 2000px;
   /* background-image: url('assets/talent-gradient.png'); */
   background-position: center, center;
@@ -247,7 +247,7 @@ main {
 
 .hero {
 
-  height: 325px;
+  height: 250px;
   background-size: 400px;
   text-align: center;
   padding: 30px 0;

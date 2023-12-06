@@ -183,8 +183,8 @@ function Landing() {
     <>
       <main>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <img src={logo} alt="Logo" height={100} style={{ marginRight: '10px' }} />
-          <button onClick={showBetaForm} className="getStartedBtn">Beta</button>
+          <img src={logo} alt="Logo" height={80} style={{ marginLeft: '30px'}} />
+          <button onClick={showBetaForm} className="getStartedBtn" style={{ fontSize: '12px', fontWeight: 'bold' }}>Beta</button>
         </div>
         <section className="hero">
           <h2>
@@ -195,22 +195,28 @@ function Landing() {
             We use AI to validate the job listing’s likelihood<br />
             of work visa sponsorship for international students
           </p>
-          <a onClick={showWaitlistForm} className="joinWaitlist">Join Waitlist</a>
-          <a onClick={showBetaForm} className="getStartedBtn">Join Beta</a>
+          <div style={{ marginTop: '35px' }}>
+            <a onClick={showWaitlistForm} className="joinWaitlist" style={{ fontSize: '30px' }}>
+              Join Waitlist
+            </a>
+            <a onClick={showBetaForm} className="getStartedBtn" style={{ fontSize: '30px', fontWeight: 'bold' }}>
+              Join Beta
+            </a>
+          </div>
         </section>
 
         <section className="images" style={{ display: 'flex', justifyContent: 'center' }}>
-          <div style={{ textAlign: 'center', margin: '15px' }}>
+          <div style={{ textAlign: 'center', margin: '10 45px'}}>
             <img src={data} alt="Data" />
             <p>Company’s<br /> historical data </p>
           </div>
 
-          <div style={{ textAlign: 'center', margin: '15px' }}>
+          <div style={{ textAlign: 'center', margin: '10 45px'}}>
             <img src={seniority} alt="Seniority" />
             <p>Seniority<br /> level</p>
           </div>
 
-          <div style={{ textAlign: 'center', margin: '15px' }}>
+          <div style={{ textAlign: 'center', margin: '10 45px'}}>
             <img src={experience} alt="Experience" />
             <p>Experience<br /> level</p>
           </div>
@@ -226,7 +232,7 @@ function Landing() {
               left: worldShiftAmount + 'px'
             }} />
           </div>
-          <h1>Find Visa Sponsornig Jobs</h1>
+          <h1>Find Visa Sponsoring Jobs</h1>
           <p>
             <br></br>
             We develop an AI model that browses in real time all job postings to evaluate their likelihood of work visa sponsorship for international students and visa-dependent applicants.
@@ -316,7 +322,7 @@ function Landing() {
           }}
           className={`scroll-box ${showScrollBox4 ? 'show' : ''}`}
         >
-          <h2>Want to find our more?</h2>
+          <h2>Want to find out more?</h2>
           <a onClick={showWaitlistForm} className="getStartedBtn" style={{ zIndex: 2 }}>Join Waitlist</a>
         </div>
 
