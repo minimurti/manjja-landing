@@ -138,7 +138,10 @@ li {
 
 body {
   margin: 0 auto;
-  font-family: Arial, sans-serif;
+  font-family: 'League Spartan', sans-serif;
+  src: url('/fonts/leaguespartan-bold.woff2') format('woff2'),
+    url('/fonts/leaguespartan-bold.woff') format('woff'),
+    url('/fonts/leaguespartan-bold.ttf') format('truetype');
   background-color: #111;
   color: #eee;
   line-height: 1.6;

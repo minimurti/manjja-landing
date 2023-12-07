@@ -36,10 +36,10 @@ input::placeholder {
 
 .images img {
   line-height: 1;
-  width: 110px;
-  height: 110px;
-  margin-left: 100px;
-  margin-right: 100px;
+  width: 5vw;
+  height: 5vw;
+  margin-left: 7.5vw;
+  margin-right: 7.5vw;
   padding-bottom: 30px;
   padding-top: 60px;
 }
@@ -58,8 +58,8 @@ input::placeholder {
   border-radius: 15px;
   padding: 20px;
   position: relative;
-  top: 27%;
   left: 50%;
+  top: 33%;
   transform: translate(-50%, -50%);
   z-index: -1;
   display: flex;
@@ -68,6 +68,10 @@ input::placeholder {
   align-items: center;
   /* border: 0.1px solid #fff; */
   /* White rounded border */
+}
+
+.scroll-box.top {
+  top: 27%;
 }
 
 .scroll-box-right {
@@ -87,6 +91,7 @@ input::placeholder {
 
 /* styles.css */
 .search-box {
+  font-size: 14pt;
   display: flex;
   align-items: center;
   font-size: 24px;
@@ -354,6 +359,12 @@ nav ul li a .btn {
 
 /* ... previous CSS styles ... */
 
+.hero p {
+
+  font-size: 16pt;
+  font-weight: bold;
+}
+
 .hero {
   line-height: 1.1;
   background-size: 100px;
@@ -371,6 +382,8 @@ nav ul li a .btn {
 }
 
 .images {
+  display: flex;
+  justify-content: center;
   width: 100vw;
   height: 100px;
   background-size: 200px;
@@ -380,10 +393,16 @@ nav ul li a .btn {
   background-attachment: fixed;
   background-repeat: no-repeat;
   font-size: 16px;
-  font-family: 'League Spartan', sans-serif;
   /* Prevent background image from repeating */
 }
 
+.potentially-top-three {
+  display: inline-flex;
+}
+
+.potentially-bottom-two {
+  display: inline-flex;
+}
 
 
 
@@ -440,34 +459,63 @@ footer {
 /* Note: this bellow @media section NEEEDS
  to be on the bottom of the page or it will
 not over-rule above classes when needed. */
+.images p {
+  /* KAMILA Edit this */
+  font-size: 1.5vw;
+  /* KAMILA note this is how to change it for mobile only */
+}
+
+@media screen and (max-width: 700px) {
 
 
-@media screen and (max-width: 1068px) {
+  .potentially-top-three {
+    justify-content: center;
+    display: flex;
+  }
+
+  .potentially-bottom-two {
+    justify-content: center;
+    display: flex;
+  }
 
   .images {
-    margin-top: 10px;
+    display: block;
+
+    margin-top: 25px;
   }
 
   .images img {
-    width: 40px;
-    height: 40px;
-    margin: 5px;
+    width: 25vw;
+    height: 25vw;
+    max-width: 75px;
+    max-height: 75px;
+    margin: 3vw;
+
   }
 
   .images p {
     /* KAMILA Edit this */
-    font-size: 8pt;
+    width: 23vw;
+    font-size: 3.5vw;
+    font-size: calc(min(3.5vw, 12pt));
+    margin: 0 auto;
     /* KAMILA note this is how to change it for mobile only */
   }
 
 
   .scroll-box,
   .scroll-box.show {
+    top: 37%;
     margin-top: 0;
     margin-bottom: 20vh;
     width: 80vw;
     /* height: 650px; */
     flex-direction: column;
+  }
+
+
+  .scroll-box.top {
+    top: 40%;
   }
 
   .scroll-box h1 {

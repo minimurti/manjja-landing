@@ -4,6 +4,8 @@ import blurb from './assets/talent-gradient.png'
 import logo from './assets/inTalentLogoWhite.png'
 import data from './assets/data.png'
 import seniority from './assets/seniority.png'
+import demographic from './assets/demographic.png'
+import industry from './assets/industry.png'
 import worldMap from './assets/map.png'
 import experience from './assets/experience.png'
 import './Landing.css'
@@ -22,12 +24,19 @@ function Landing() {
   const [successMessage, setSuccessMessage] = useState('');
 
   const [showScrollBox, setShowScrollBox] = useState(false);
+  const [showBgBlur, setShowBgBlur] = useState(false);
   const [showScrollBox2, setShowScrollBox2] = useState(false);
   const [showScrollBox3, setShowScrollBox3] = useState(false);
   const [showScrollBox4, setShowScrollBox4] = useState(false);
   const [worldShiftAmount, setWorldShiftAmount] = useState(0);
   const [typingDone, setTypingDone] = useState(false);
   const [eeWidth, setEEWidth] = useState(0.0);
+
+  const [showImage1, setShowImage1] = useState(false);
+  const [showImage2, setShowImage2] = useState(false);
+  const [showImage3, setShowImage3] = useState(false);
+  const [showImage4, setShowImage4] = useState(false);
+  const [showImage5, setShowImage5] = useState(false);
 
   var isTypingEE = false;
 
@@ -38,6 +47,31 @@ function Landing() {
         typeLetters(i + 1);
       }, 50)
     }
+  }
+
+  function showSequentialImages(delay) {
+    const images = [showImage1, showImage2, showImage3, showImage4, showImage5, showBgBlur];
+    const setters = [setShowImage1, setShowImage2, setShowImage3, setShowImage4, setShowImage5, setShowBgBlur];
+
+    let index = 0;
+
+    const interval = setInterval(() => {
+      // Check if all images have been displayed, then clear the interval
+      if (index === images.length) {
+        clearInterval(interval);
+        return;
+      }
+
+      // Show the current image
+      setters[index](true);
+
+      // Hide the current image after a delay
+      setTimeout(() => {
+        setters[index](false);
+      }, delay);
+
+      index++;
+    }, delay * 2); // Display time + delay time before the next image
   }
 
   useEffect(() => {
@@ -57,7 +91,14 @@ function Landing() {
         }
         //console.log(50 * ((scrollPosition - triggerOffset) / heightRelative))
         setShowScrollBox(true);
+        setTimeout(() => {
+          setShowBgBlur(false)
+        }, 100);
+
       } else {
+        setTimeout(() => {
+          setShowBgBlur(true)
+        }, 100);
         setShowScrollBox(false);
       }
 
@@ -93,6 +134,9 @@ function Landing() {
     }
 
     window.addEventListener('scroll', handleScroll);
+
+    showSequentialImages(100)
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -175,7 +219,7 @@ function Landing() {
     height: '100%',
     zIndex: -1,
     transition: 'opacity 0.5s ease',
-    opacity: showScrollBox ? 0.25 : 1,
+    opacity: showBgBlur ? 1 : 0.25,
     /* Add other styles for background size, position, etc. */
   };
 
@@ -186,8 +230,8 @@ function Landing() {
           <img src={logo} alt="Logo" height={80} style={{ marginLeft: '2vw' }} />
           <button onClick={showBetaForm} className="getStartedBtn" style={{ fontSize: '12px', fontWeight: 'bold' }}>Beta</button>
         </div>
-        <section className="hero" style={{ marginBottom: '25px' }} >
-          <h2>
+        <section className="hero" style={{ margin: '25px' }} >
+          <h2 style={{ marginBottom: '25px' }} >
             Find jobs that will indicate the likelihood<br />
             of visa sponsorship
           </h2>
@@ -213,26 +257,37 @@ function Landing() {
           </div>
         </section>
 
-        <section className="images" style={{ display: 'flex', justifyContent: 'center' }}>
-          <div style={{ textAlign: 'center', margin: '10 45px' }}>
-            <img src={data} alt="Data" />
-            <p>Company’s<br /> historical data </p>
-          </div>
+        <section className="images">
+          <span className='potentially-top-three'>
+            <div style={{ opacity: showImage1 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
+              <img src={industry} alt="Demograhics" />
+              <p>Job<br />Industry</p>
+            </div>
+            <div id="img-2" style={{ opacity: showImage2 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
+              <img src={demographic} alt="Demograhics" />
+              <p>Company’s<br />Demographics Analysis</p>
+            </div>
+            <div id="img-3" style={{ opacity: showImage3 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
+              <img src={data} alt="Data" />
+              <p>Company’s<br />Sponsorship History</p>
+            </div>
+          </span>
+          <span className='potentially-bottom-two'>
+            <div id="img-4" style={{ opacity: showImage4 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
+              <img src={seniority} alt="Seniority" />
+              <p>Seniority<br /> level</p>
+            </div>
 
-          <div style={{ textAlign: 'center', margin: '10 45px' }}>
-            <img src={seniority} alt="Seniority" />
-            <p>Seniority<br /> level</p>
-          </div>
-
-          <div style={{ textAlign: 'center', margin: '10 45px' }}>
-            <img src={experience} alt="Experience" />
-            <p>Experience<br /> level</p>
-          </div>
+            <div id="img-5" style={{ opacity: showImage5 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
+              <img src={experience} alt="Experience" />
+              <p>Experience<br /> level</p>
+            </div>
+          </span>
         </section>
 
         <div
           id="scrollBox"
-          className={`scroll-box ${showScrollBox ? 'show' : ''}`}>
+          className={`scroll-box top ${showScrollBox ? 'show' : ''}`}>
           <div className="scroll-box-left">
             <h1>Find Visa Sponsoring Jobs</h1>
             <div style={{ width: '220px', height: '220px', margin: '0 auto', marginTop: '10vh', marginBottom: '10vh', overflow: 'hidden', borderRadius: '100%', border: '1.5px solid #fff' }}>
