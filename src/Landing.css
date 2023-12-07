@@ -45,12 +45,14 @@ input::placeholder {
 }
 
 .scroll-box {
+  margin-top: 10vh;
   opacity: 0;
+  text-align: center;
   transition: opacity 0.5s ease;
   /* width: 200px; */
   width: 65vw;
   height: 500px;
-  background-color: rgba(40, 69, 106, 0.2);
+  /* background-color: rgba(40, 69, 106, 0.2); */
   /* Translucent background */
   color: #fff;
   border-radius: 15px;
@@ -61,37 +63,26 @@ input::placeholder {
   transform: translate(-50%, -50%);
   z-index: -1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: 2px solid #fff;
+  /* border: 0.1px solid #fff; */
   /* White rounded border */
 }
 
-@media screen and (max-width: 1068px) {
-
-  .images {
-    margin-top: 10px;
-  }
-
-  .images img {
-    width: 40px;
-    height: 40px;
-    margin: 5px;
-  }
-
-
-  .scroll-box,
-  .scroll-box.show {
-    width: 80vw;
-    height: 650px;
-  }
-
-  .scroll-box h1 {
-    font-size: 20pt;
-    /* White rounded border */
-  }
+.scroll-box-right {
+  margin-left: 10vw;
 }
+
+.scroll-box-right p,
+.scroll-box-right ul {
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+
+/* Note for some reason, if the item is declared below this line vertically it will not overule for mobile... apparently */
+
 
 
 /* styles.css */
@@ -125,7 +116,27 @@ input::placeholder {
   display: flex;
   margin: 0px;
   box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 15px;
 }
+
+.job-card-example .likelihood-section {
+  background: none;
+  border: none;
+}
+
+.job-card-example .middle-section {
+  background: none;
+  color: white;
+  border: none;
+}
+
+.job-card-example .middle-section p {
+  font-size: 8pt;
+}
+
+
+
 
 .show-card {
   opacity: 1;
@@ -135,6 +146,7 @@ input::placeholder {
 
 
 .search-box {
+  margin: 30px;
   opacity: 1;
   transition: opacity 0.5s ease;
   /* width: 200px; */
@@ -423,4 +435,52 @@ footer {
   padding: 20px 0;
   background-color: #222;
   color: #eee;
+}
+
+/* Note: this bellow @media section NEEEDS
+ to be on the bottom of the page or it will
+not over-rule above classes when needed. */
+
+
+@media screen and (max-width: 1068px) {
+
+  .images {
+    margin-top: 10px;
+  }
+
+  .images img {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+  }
+
+  .images p {
+    /* KAMILA Edit this */
+    font-size: 8pt;
+    /* KAMILA note this is how to change it for mobile only */
+  }
+
+
+  .scroll-box,
+  .scroll-box.show {
+    margin-top: 0;
+    margin-bottom: 20vh;
+    width: 80vw;
+    /* height: 650px; */
+    flex-direction: column;
+  }
+
+  .scroll-box h1 {
+    /* KAMILA Edit this */
+    font-size: 20pt;
+    /* White rounded border */
+  }
+
+  .scroll-box img {
+    margin: 0 auto;
+  }
+
+  .scroll-box-right {
+    margin-left: 0px;
+  }
 }

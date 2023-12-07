@@ -183,10 +183,10 @@ function Landing() {
     <>
       <main>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <img src={logo} alt="Logo" height={80} style={{ marginLeft: '30px'}} />
+          <img src={logo} alt="Logo" height={80} style={{ marginLeft: '2vw' }} />
           <button onClick={showBetaForm} className="getStartedBtn" style={{ fontSize: '12px', fontWeight: 'bold' }}>Beta</button>
         </div>
-        <section className="hero">
+        <section className="hero" style={{ marginBottom: '25px' }} >
           <h2>
             Find jobs that will indicate the likelihood<br />
             of visa sponsorship
@@ -196,27 +196,35 @@ function Landing() {
             of work visa sponsorship for international students
           </p>
           <div style={{ marginTop: '35px' }}>
-            <a onClick={showWaitlistForm} className="joinWaitlist" style={{ fontSize: '30px' }}>
+            <a onClick={showWaitlistForm} className="joinWaitlist" style={{
+              // marigins are needed to balance size of adjacent button
+              marginLeft: '20px',
+              marginRight: '20px',
+              fontSize: '30px'
+            }}>
               Join Waitlist
             </a>
-            <a onClick={showBetaForm} className="getStartedBtn" style={{ fontSize: '30px', fontWeight: 'bold' }}>
+            <a onClick={showBetaForm} className="getStartedBtn" style={{
+              fontSize: '30px',
+              fontWeight: 'bold'
+            }}>
               Join Beta
             </a>
           </div>
         </section>
 
         <section className="images" style={{ display: 'flex', justifyContent: 'center' }}>
-          <div style={{ textAlign: 'center', margin: '10 45px'}}>
+          <div style={{ textAlign: 'center', margin: '10 45px' }}>
             <img src={data} alt="Data" />
             <p>Company’s<br /> historical data </p>
           </div>
 
-          <div style={{ textAlign: 'center', margin: '10 45px'}}>
+          <div style={{ textAlign: 'center', margin: '10 45px' }}>
             <img src={seniority} alt="Seniority" />
             <p>Seniority<br /> level</p>
           </div>
 
-          <div style={{ textAlign: 'center', margin: '10 45px'}}>
+          <div style={{ textAlign: 'center', margin: '10 45px' }}>
             <img src={experience} alt="Experience" />
             <p>Experience<br /> level</p>
           </div>
@@ -225,58 +233,50 @@ function Landing() {
         <div
           id="scrollBox"
           className={`scroll-box ${showScrollBox ? 'show' : ''}`}>
-          <div style={{ width: '220px', height: '220px', margin: '30px', overflow: 'hidden', borderRadius: '100%', border: '1.5px solid #fff' }}>
-            <img src={worldMap} style={{
-              position: 'relative',
-              height: '220px',
-              left: worldShiftAmount + 'px'
-            }} />
+          <div className="scroll-box-left">
+            <h1>Find Visa Sponsoring Jobs</h1>
+            <div style={{ width: '220px', height: '220px', margin: '0 auto', marginTop: '10vh', marginBottom: '10vh', overflow: 'hidden', borderRadius: '100%', border: '1.5px solid #fff' }}>
+              <img src={worldMap} style={{
+                position: 'relative',
+                height: '220px',
+                left: worldShiftAmount + 'px'
+              }} />
+            </div>
           </div>
-          <h1>Find Visa Sponsoring Jobs</h1>
-          <p>
-            <br></br>
-            We develop an AI model that browses in real time all job postings to evaluate their likelihood of work visa sponsorship for international students and visa-dependent applicants.
-          </p>
+          <div className="scroll-box-right">
+            <p>
+              We develop an AI model that browses in real time all job postings to evaluate their likelihood of work visa sponsorship for international students and visa-dependent applicants.
+            </p>
+          </div>
         </div>
 
         <div
           id="scrollBox2"
-          style={{
-            marginTop: '300px',
-            height: '1050px',
-          }}
           className={`scroll-box ${showScrollBox2 ? 'show' : ''}`}
         >
-
-          <h1>How you find jobs</h1>
-
-          <br></br>
-
-
-          <div>
-          </div>
-          <div className={`search-box ${typingDone ? 'typing-done' : ''}`}>
-            <span className="typing-text" style={{ width: eeWidth + '%' }}> 🔎 Electrical Engineer </span>
-          </div>
-
-          <div className={`job-card-example ${typingDone ? 'show-card' : ''}`} style={{ scale: '0.66' }}>
-            <div className="likelihood-section" style={{ color: 'rgb(9, 188, 105)' }}>
-              <p className="likelihood-text">95%</p>
-              <p className="likelihood-desc">Similar Level and Fields Accepted</p>
+          <div className="scroll-box-left">
+            <h1>Avoid job rejections due to visa issue</h1>
+            <div className={`search-box ${typingDone ? 'typing-done' : ''}`}>
+              <span className="typing-text" style={{ width: eeWidth + '%' }}> 🔎 Entry Level Managment</span>
             </div>
-            <div className="middle-section">
-              <h2>Deposit Management Entry Level</h2>
-              <h4>CIBC</h4>
-              <p>Support the daily activities within the Deposit Operations a....</p>
-            </div>
-            <div className="apply-section">
-              <a rel="noopener noreferrer" className="apply-button" style={{ backgroundColor: 'rgb(41, 21, 46)', color: 'white' }}>Apply</a>
+
+            <div className={`job-card-example ${typingDone ? 'show-card' : ''}`} style={{ scale: '0.66' }}>
+              <div className="likelihood-section" style={{ color: 'rgb(9, 188, 105)' }}>
+                <p className="likelihood-text">95%</p>
+                <p className="likelihood-desc">Likelihood to Sponsor</p>
+              </div>
+              <div className="middle-section">
+                <h2>Deposit Management Entry Level</h2>
+                <h4>CIBC</h4>
+                {/* <p>Support the daily activities within the Deposit Operations a....</p> */}
+              </div>
             </div>
           </div>
-
-          <p style={{ padding: 30 }}>
-            Simply Lookup the position you desire and we will provide unique likeyhood, not only based on the companies rank and history for sponsorship, but the likelyhood of that specific listing in accordance to, field, seniority, time of year, and dozens of other factors
-          </p>
+          <div className="scroll-box-right">
+            <p>
+              We develop an AI model that browses in real time all job postings to evaluate their likelihood of work visa sponsorship for international students and visa-dependent applicants.
+            </p>
+          </div>
 
 
         </div>
@@ -290,23 +290,32 @@ function Landing() {
           }}
           className={`scroll-box ${showScrollBox3 ? 'show' : ''}`}
         >
-          <img src={experience} alt="Seniority" height={130} style={{ width: '110px', height: '110px', margin: '50px' }} />
-          <h1>How we evaluates jobs</h1>
+          <div className='scroll-box-left'>
+            <h1>How we evaluates jobs</h1>
+            <img src={experience} alt="Seniority" height={130} style={{ width: '110px', height: '110px', margin: '50px' }} />
 
-          <br></br>
-          <ul style={{ padding: 30 }}>
-            <li>
-              Intalent scans job postings (~2,000 a day) in real time, using AI to assess visa sponsorship likelihood.
-            </li>
-            <li>
-              After validation, we manually check the accuracy of the validated likelihood of each job posting’s
-            </li>
-            <li>
-              Confirmed visa sponsorship jobs are then posted on the Intalent website
-            </li>
-          </ul>
-
+          </div>
+          <div className='scroll-box-right'>
+            <ul>
+              <li>
+                Intalent scans job postings (~2,000 a day) in real time, using AI to assess visa sponsorship likelihood.
+                <br />
+                <br />
+              </li>
+              <li>
+                After validation, we manually check the accuracy of the validated likelihood of each job posting’s
+                <br />
+                <br />
+              </li>
+              <li>
+                Confirmed visa sponsorship jobs are then posted on the Intalent website
+                <br />
+                <br />
+              </li>
+            </ul>
+          </div>
         </div>
+
 
 
         <div
