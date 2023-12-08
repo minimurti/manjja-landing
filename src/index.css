@@ -28,7 +28,7 @@ li {
   border: none;
   display: inline-block;
   padding: 5px 15px;
-  margin: 20px;
+  margin: 10px;
   background-color: #6def6d;
   color: #28456a;
   text-decoration: none;
@@ -78,62 +78,6 @@ li {
 #incorrectPasscode {
   color: #ff0000;
   margin-top: 10px;
-}
-
-.beta-form-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  /* Semi-transparent black */
-  z-index: 999;
-  justify-content: center;
-  align-items: center;
-  overflow: auto;
-}
-
-.beta-form {
-  background-color: #fff;
-  padding: 0px;
-  border-radius: 15px;
-  text-align: center;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  /* Adjust the maximum width as needed */
-  margin: 0 auto;
-  /* Center the form horizontally */
-  position: relative;
-  /* Position the form */
-  top: 50%;
-  /* Move the form down by 50% of the container's height */
-  transform: translateY(-50%);
-  /* Adjust the position to center vertically */
-}
-
-.exit-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: transparent;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  color: #333;
-}
-
-/* Style for the exit button */
-.exit-button {
-  align-self: center;
-  position: relative;
-  top: -20px;
-  right: -125px;
-  background-color: transparent;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  color: #333;
 }
 
 body {
