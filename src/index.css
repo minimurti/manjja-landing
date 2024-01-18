@@ -12,17 +12,22 @@ li {
 /* Style for the "Get Started" button */
 .getStartedBtn {
   border: none;
+  /* Gradient border shades of white */
+  border-image-slice: 1;
   display: inline-block;
-  padding: 5px 15px;
+  padding: 12px 39px;
   margin: 20px;
-  background-color: #fff;
-  color: #000000;
+  background: linear-gradient(to right, #4b0082, #000080);
+  /* Gradient from dark purple to dark blue */
+  color: #ffffff;
+  /* White text */
   text-decoration: none;
   border-radius: 20px;
   transition: background-color 0.3s;
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
 }
+
 
 .submitBtn {
   border: none;
@@ -92,7 +97,7 @@ body {
   position: relative;
   /* Set body to relative positioning */
   overflow-x: hidden;
-  background-color: #29152e;
+  background-color: rgb(18, 9, 20);
   color: #EBEAEA;
   /* Hide horizontal overflow */
 }
@@ -194,7 +199,7 @@ main {
 
 .hero {
 
-  height: 250px;
+  height: 650px;
   background-size: 400px;
   text-align: center;
   padding: 30px 0;
@@ -236,7 +241,7 @@ main {
 
 
 .hero h2 {
-  font-size: 40pt;
+  font-size: 50pt;
   margin-bottom: 20px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }

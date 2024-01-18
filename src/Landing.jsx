@@ -219,7 +219,7 @@ function Landing() {
     height: '100%',
     zIndex: -1,
     transition: 'opacity 0.5s ease',
-    opacity: showBgBlur ? 1 : 0.25,
+    opacity: showBgBlur ? 0.225 : 0.0,
     /* Add other styles for background size, position, etc. */
   };
 
@@ -231,11 +231,11 @@ function Landing() {
           <button onClick={showBetaForm} className="getStartedBtn" style={{ fontSize: '12px', fontWeight: 'bold' }}>Beta</button>
         </div>
         <section className="hero" style={{ margin: '25px' }} >
-          <h2 style={{ marginBottom: '25px' }} >
-            Find jobs that will indicate the likelihood<br />
+          <h2 style={{ marginBottom: '125px', marginTop: '125px', opacity: showImage1 ? 1 : 0, paddingTop: showImage1 ? '0px' : '100px', transition: 'opacity 0.5s ease, padding 0.3s ease' }} >
+            Job listings with likelihood<br />
             of visa sponsorship
           </h2>
-          <p>
+          <p style={{ paddingTop: showImage2 ? '0px' : '100px', opacity: showImage2 ? 1 : 0, transition: 'opacity 0.5s ease, padding 0.3s ease' }}>
             We use AI to validate the job listing’s likelihood<br />
             of work visa sponsorship for international students
           </p>
@@ -244,13 +244,17 @@ function Landing() {
               // marigins are needed to balance size of adjacent button
               marginLeft: '20px',
               marginRight: '20px',
-              fontSize: '30px'
+              fontSize: '20pt',
+              opacity: showImage3 ? 1 : 0,
+              transition: 'opacity 0.5s ease',
             }}>
               Join Waitlist
             </a>
             <a onClick={showBetaForm} className="getStartedBtn" style={{
-              fontSize: '30px',
-              fontWeight: 'bold'
+              fontSize: '20pt',
+              fontWeight: '400',
+              opacity: showImage4 ? 1 : 0,
+              transition: 'opacity 0.5s ease',
             }}>
               Join Beta
             </a>

@@ -49,7 +49,7 @@ input::placeholder {
   margin-top: 10vh;
   opacity: 0;
   text-align: center;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease, padding 0.5s ease;
   /* width: 200px; */
   width: 65vw;
   height: 500px;
@@ -67,6 +67,8 @@ input::placeholder {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding-top: 300px;
+  /*changes*/
   /* border: 0.1px solid #fff; */
   /* White rounded border */
 }
@@ -165,6 +167,7 @@ input::placeholder {
 }
 
 .scroll-box.show {
+  padding-top: 0px;
   opacity: 1;
 }
 
@@ -354,7 +357,7 @@ nav ul li a .btn {
 .hero p {
 
   font-size: 16pt;
-  font-weight: bold;
+  font-weight: 100;
 }
 
 .hero {
