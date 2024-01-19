@@ -34,21 +34,50 @@ input::placeholder {
   color: #999;
 }
 
+.worldBG {
+  width: 30vw;
+  height: 30vw;
+  margin: '0 auto';
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  overflow: hidden;
+  border-radius: 100%;
+  border: 1.5px solid #fff;
+  background-image: linear-gradient(to right, #4b0010, #000080);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+
+}
+
+.worldImage {
+  height: 30vw;
+}
 
 .images img {
-  line-height: 1;
-  width: 5vw;
-  height: 5vw;
-  margin-left: 7.5vw;
-  margin-right: 7.5vw;
-  padding-bottom: 30px;
-  padding-top: 60px;
+  width: 25vw;
+  height: 25vw;
+  max-width: 75px;
+  max-height: 75px;
+  margin: 3vw;
+}
+
+.joinWaitlist {
+  margin-left: '20px';
+  margin-right: '20px';
+  display: inline-block;
+  padding: 10px 10px;
+  margin: 20px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: background-color 0.3s;
+  font-size: 20px;
 }
 
 .scroll-box {
-  margin-top: 10vh;
+  margin-top: 20vh;
   opacity: 0;
-  text-align: center;
+  text-align: left;
   transition: opacity 0.5s ease, padding 0.5s ease;
   /* width: 200px; */
   width: 65vw;
@@ -67,7 +96,7 @@ input::placeholder {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding-top: 300px;
+  padding-top: 75vh;
   /*changes*/
   /* border: 0.1px solid #fff; */
   /* White rounded border */
@@ -194,19 +223,6 @@ input::placeholder {
   text-decoration: none;
   border-radius: 25px;
   transition: background-color 0.3s;
-}
-
-
-#joinWaitlist {
-
-  display: inline-block;
-  padding: 10px 10px;
-  margin: 20px;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 25px;
-  transition: background-color 0.3s;
-  font-size: 20px;
 }
 
 /* Style for the text field */
@@ -377,10 +393,9 @@ nav ul li a .btn {
 }
 
 .images {
-  display: flex;
+  margin-top: 25px;
+  display: block;
   justify-content: center;
-  width: 100vw;
-  height: 100px;
   background-size: 200px;
   text-align: center;
   padding: 30;
@@ -392,13 +407,14 @@ nav ul li a .btn {
 }
 
 .potentially-top-three {
-  display: inline-flex;
+  justify-content: center;
+  display: flex;
 }
 
 .potentially-bottom-two {
-  display: inline-flex;
+  justify-content: center;
+  display: flex;
 }
-
 
 
 
@@ -460,22 +476,34 @@ not over-rule above classes when needed. */
   /* KAMILA note this is how to change it for mobile only */
 }
 
+.scroll-box h1 {
+  /* KAMILA Edit this */
+  font-size: 36pt;
+  margin-bottom: 120px;
+  /* White rounded border */
+}
+
+.scroll-box p {
+  /* KAMILA Edit this */
+  font-weight: 100;
+  /* White rounded border */
+}
+
+.scroll-box ul {
+  font-weight: 100;
+}
+
 @media screen and (max-width: 700px) {
 
 
-  .potentially-top-three {
-    justify-content: center;
-    display: flex;
-  }
-
-  .potentially-bottom-two {
-    justify-content: center;
-    display: flex;
+  .joinWaitlist {
+    display: block;
+    margin: 0 auto;
   }
 
   .images {
     display: block;
-
+    margin-bottom: 50px;
     margin-top: 25px;
   }
 
@@ -497,11 +525,13 @@ not over-rule above classes when needed. */
     /* KAMILA note this is how to change it for mobile only */
   }
 
+  .scroll-box {
+    margin-top: 40vh;
+  }
 
   .scroll-box,
   .scroll-box.show {
-    top: 37%;
-    margin-top: 0;
+    top: 0%;
     margin-bottom: 20vh;
     width: 80vw;
     /* height: 650px; */
@@ -510,12 +540,13 @@ not over-rule above classes when needed. */
 
 
   .scroll-box.top {
-    top: 40%;
+    top: 0%;
   }
 
   .scroll-box h1 {
     /* KAMILA Edit this */
     font-size: 20pt;
+    margin-bottom: 60px;
     /* White rounded border */
   }
 
@@ -523,7 +554,22 @@ not over-rule above classes when needed. */
     margin: 0 auto;
   }
 
+  .scroll-box-left {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
   .scroll-box-right {
-    margin-left: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .worldBG {
+    width: 60vw;
+    height: 60vw;
+  }
+
+  .worldImage {
+    height: 60vw;
   }
 }

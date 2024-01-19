@@ -43,18 +43,6 @@ li {
   cursor: pointer;
 }
 
-#joinWaitlist {
-
-  display: inline-block;
-  padding: 10px 20px;
-  margin: 20px;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 25px;
-  transition: background-color 0.3s;
-  font-size: 20px;
-}
-
 /* Style for the text field */
 #passcodeInput {
   padding: 10px;
@@ -241,14 +229,18 @@ main {
 
 
 .hero h2 {
+  margin-bottom: 125px;
+  margin-top: 125px;
   font-size: 50pt;
-  margin-bottom: 20px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 @media screen and (max-width: 1068px) {
   .hero h2 {
     font-size: 20pt;
+    margin-bottom: 75px;
+    margin-top: 10px;
+
   }
 }
 

@@ -38,6 +38,12 @@ function Landing() {
   const [showImage4, setShowImage4] = useState(false);
   const [showImage5, setShowImage5] = useState(false);
 
+  const [showTopElement1, setshowTopElement1] = useState(false);
+  const [showTopElement2, setshowTopElement2] = useState(false);
+  const [showTopElement3, setshowTopElement3] = useState(false);
+  const [showTopElement4, setshowTopElement4] = useState(false);
+  const [showTopElement5, setshowTopElement5] = useState(false);
+
   var isTypingEE = false;
 
   function typeLetters(i) {
@@ -49,9 +55,9 @@ function Landing() {
     }
   }
 
-  function showSequentialImages(delay) {
-    const images = [showImage1, showImage2, showImage3, showImage4, showImage5, showBgBlur];
-    const setters = [setShowImage1, setShowImage2, setShowImage3, setShowImage4, setShowImage5, setShowBgBlur];
+  function showSequentialElement(delay) {
+    const images = [showTopElement1, showTopElement2, showTopElement3, showTopElement4, showTopElement5, showBgBlur];
+    const setters = [setshowTopElement1, setshowTopElement2, setShowBgBlur, setshowTopElement3, setshowTopElement4, setshowTopElement5];
 
     let index = 0;
 
@@ -74,6 +80,46 @@ function Landing() {
     }, delay * 2); // Display time + delay time before the next image
   }
 
+  function showSequentialImages(delay) {
+    const images = [showImage1, showImage2, showImage3, showImage4, showImage5];
+    const setters = [setShowImage1, setShowImage2, setShowImage3, setShowImage4, setShowImage5];
+
+    let index = 0;
+
+    const interval = setInterval(() => {
+      // Check if all images have been displayed, then clear the interval
+      if (index === images.length) {
+        clearInterval(interval);
+        return;
+      }
+      // Show the current image
+      setters[index](true);
+
+      // Hide the current image after a delay
+      index++;
+    }, delay * 2); // Display time + delay time before the next image
+  }
+
+  function hideSequentialImages(delay) {
+    const images = [showImage1, showImage2, showImage3, showImage4, showImage5];
+    const setters = [setShowImage1, setShowImage2, setShowImage3, setShowImage4, setShowImage5];
+
+    let index = 0;
+
+    const interval = setInterval(() => {
+      // Check if all images have been displayed, then clear the interval
+      if (index === images.length) {
+        clearInterval(interval);
+        return;
+      }
+      // Show the current image
+      setters[index](false);
+
+      // Hide the current image after a delay
+      index++;
+    }, delay * 2); // Display time + delay time before the next image
+  }
+
   useEffect(() => {
 
     async function handleScroll() {
@@ -86,8 +132,8 @@ function Landing() {
 
       if (scrollPosition > triggerOffset) {
         //"165" being the max potential shift desired multiplied by the difference of scroll position to top of div, divided by total window height
-        if (worldShiftAmount == 0 || ((worldShiftAmount + 165 * ((scrollPosition - triggerOffset) / heightRelative)) > 10)) {
-          setWorldShiftAmount(-165 * ((scrollPosition - triggerOffset) / heightRelative))
+        if (worldShiftAmount == 0 || ((worldShiftAmount + 30 * ((scrollPosition - triggerOffset) / heightRelative)) > 1.8182)) {
+          setWorldShiftAmount(-30 * ((scrollPosition - triggerOffset) / heightRelative))
         }
         //console.log(50 * ((scrollPosition - triggerOffset) / heightRelative))
         setShowScrollBox(true);
@@ -121,8 +167,10 @@ function Landing() {
       if (scrollPosition > triggerOffset3) {
         //"165" being the max potential shift desired multiplied by the difference of scroll position to top of div, divided by total window height
         setShowScrollBox3(true);
+        showSequentialImages(100)
       } else {
         setShowScrollBox3(false);
+        hideSequentialImages(100)
       }
 
       if (scrollPosition > triggerOffset4) {
@@ -135,7 +183,7 @@ function Landing() {
 
     window.addEventListener('scroll', handleScroll);
 
-    showSequentialImages(100)
+    showSequentialElement(100)
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -213,13 +261,13 @@ function Landing() {
   const bgStyle = {
     backgroundImage: `url(${blurb})`,
     position: 'fixed',
-    top: 0,
-    left: 0,
+    top: '25%',
+    left: '25%',
     width: '100%',
     height: '100%',
     zIndex: -1,
     transition: 'opacity 0.5s ease',
-    opacity: showBgBlur ? 0.225 : 0.0,
+    opacity: showBgBlur ? 0.225 : 0.112,
     /* Add other styles for background size, position, etc. */
   };
 
@@ -231,78 +279,55 @@ function Landing() {
           <button onClick={showBetaForm} className="getStartedBtn" style={{ fontSize: '12px', fontWeight: 'bold' }}>Beta</button>
         </div>
         <section className="hero" style={{ margin: '25px' }} >
-          <h2 style={{ marginBottom: '125px', marginTop: '125px', opacity: showImage1 ? 1 : 0, paddingTop: showImage1 ? '0px' : '100px', transition: 'opacity 0.5s ease, padding 0.3s ease' }} >
+          <h2 style={{ opacity: showTopElement1 ? 1 : 0, paddingTop: showTopElement1 ? '0px' : '100px', transition: 'opacity 0.5s ease, padding 0.3s ease' }} >
             Job listings with likelihood<br />
             of visa sponsorship
           </h2>
-          <p style={{ paddingTop: showImage2 ? '0px' : '100px', opacity: showImage2 ? 1 : 0, transition: 'opacity 0.5s ease, padding 0.3s ease' }}>
+          <p style={{ paddingRight: showTopElement2 ? '0px' : '100px', opacity: showTopElement2 ? 1 : 0, transition: 'opacity 0.5s ease, padding 0.3s ease' }}>
             We use AI to validate the job listing’s likelihood<br />
             of work visa sponsorship for international students
           </p>
-          <div style={{ marginTop: '35px' }}>
-            <a onClick={showWaitlistForm} className="joinWaitlist" style={{
-              // marigins are needed to balance size of adjacent button
-              marginLeft: '20px',
-              marginRight: '20px',
-              fontSize: '20pt',
-              opacity: showImage3 ? 1 : 0,
-              transition: 'opacity 0.5s ease',
-            }}>
-              Join Waitlist
-            </a>
+          <div style={{ marginTop: '85px' }}>
             <a onClick={showBetaForm} className="getStartedBtn" style={{
               fontSize: '20pt',
               fontWeight: '400',
-              opacity: showImage4 ? 1 : 0,
+              opacity: showTopElement3 ? 1 : 0,
               transition: 'opacity 0.5s ease',
             }}>
               Join Beta
             </a>
+            <a onClick={showWaitlistForm} className="joinWaitlist" style={{
+              // marigins are needed to balance size of adjacent button
+              fontSize: '20pt',
+              opacity: showTopElement4 ? 1 : 0,
+              transition: 'opacity 0.5s ease',
+            }}>
+              Join Waitlist
+            </a>
           </div>
         </section>
 
-        <section className="images">
-          <span className='potentially-top-three'>
-            <div style={{ opacity: showImage1 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
-              <img src={industry} alt="Demograhics" />
-              <p>Job<br />Industry</p>
-            </div>
-            <div id="img-2" style={{ opacity: showImage2 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
-              <img src={demographic} alt="Demograhics" />
-              <p>Company’s<br />Demographics Analysis</p>
-            </div>
-            <div id="img-3" style={{ opacity: showImage3 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
-              <img src={data} alt="Data" />
-              <p>Company’s<br />Sponsorship History</p>
-            </div>
-          </span>
-          <span className='potentially-bottom-two'>
-            <div id="img-4" style={{ opacity: showImage4 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
-              <img src={seniority} alt="Seniority" />
-              <p>Seniority<br /> level</p>
-            </div>
-
-            <div id="img-5" style={{ opacity: showImage5 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
-              <img src={experience} alt="Experience" />
-              <p>Experience<br /> level</p>
-            </div>
-          </span>
+        <section style={{ width: '100vw' }}>
         </section>
 
         <div
           id="scrollBox"
           className={`scroll-box top ${showScrollBox ? 'show' : ''}`}>
           <div className="scroll-box-left">
-            <h1>Find Visa Sponsoring Jobs</h1>
-            <div style={{ width: '220px', height: '220px', margin: '0 auto', marginTop: '10vh', marginBottom: '10vh', overflow: 'hidden', borderRadius: '100%', border: '1.5px solid #fff' }}>
-              <img src={worldMap} style={{
-                position: 'relative',
-                height: '220px',
-                left: worldShiftAmount + 'px'
-              }} />
+            <div
+              className="worldBG"
+            >
+              <img src={worldMap}
+                className="worldImage"
+                style={{
+                  position: 'relative',
+                  left: worldShiftAmount + 'vw'
+                }}
+              />
             </div>
           </div>
           <div className="scroll-box-right">
+            <h1>Find Visa Sponsoring Jobs</h1>
             <p>
               We develop an AI model that browses in real time all job postings to evaluate their likelihood of work visa sponsorship for international students and visa-dependent applicants.
             </p>
@@ -315,6 +340,11 @@ function Landing() {
         >
           <div className="scroll-box-left">
             <h1>Avoid job rejections due to visa issue</h1>
+            <p>
+              We develop an AI model that browses in real time all job postings to evaluate their likelihood of work visa sponsorship for international students and visa-dependent applicants.
+            </p>
+          </div>
+          <div className="scroll-box-right">
             <div className={`search-box ${typingDone ? 'typing-done' : ''}`}>
               <span className="typing-text" style={{ width: eeWidth + '%' }}> 🔎 Entry Level Managment</span>
             </div>
@@ -331,11 +361,6 @@ function Landing() {
               </div>
             </div>
           </div>
-          <div className="scroll-box-right">
-            <p>
-              We develop an AI model that browses in real time all job postings to evaluate their likelihood of work visa sponsorship for international students and visa-dependent applicants.
-            </p>
-          </div>
 
 
         </div>
@@ -344,17 +369,42 @@ function Landing() {
         <div
           id="scrollBox3"
           style={{
-            marginTop: '100px',
             height: '750px',
           }}
           className={`scroll-box ${showScrollBox3 ? 'show' : ''}`}
         >
           <div className='scroll-box-left'>
-            <h1>How we evaluates jobs</h1>
-            <img src={experience} alt="Seniority" height={130} style={{ width: '110px', height: '110px', margin: '50px' }} />
+            <section className="images">
+              <span className='potentially-top-three'>
+                <div style={{ opacity: showImage1 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
+                  <img src={industry} alt="Demograhics" />
+                  <p>Job<br />Industry</p>
+                </div>
+                <div id="img-2" style={{ opacity: showImage2 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
+                  <img src={demographic} alt="Demograhics" />
+                  <p>Company’s<br />Demographics Analysis</p>
+                </div>
+                <div id="img-3" style={{ opacity: showImage3 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
+                  <img src={data} alt="Data" />
+                  <p>Company’s<br />Sponsorship History</p>
+                </div>
+              </span>
+              <span className='potentially-bottom-two'>
+                <div id="img-4" style={{ opacity: showImage4 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
+                  <img src={seniority} alt="Seniority" />
+                  <p>Seniority<br /> level</p>
+                </div>
+
+                <div id="img-5" style={{ opacity: showImage5 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
+                  <img src={experience} alt="Experience" />
+                  <p>Experience<br /> level</p>
+                </div>
+              </span>
+            </section>
 
           </div>
           <div className='scroll-box-right'>
+            <h1>How we evaluates jobs</h1>
             <ul>
               <li>
                 Intalent scans job postings (~2,000 a day) in real time, using AI to assess visa sponsorship likelihood.
@@ -380,7 +430,6 @@ function Landing() {
         <div
           id="scrollBox4"
           style={{
-            marginTop: '100px',
             marginBottom: '300px',
             paddingBottom: '100px',
             border: 'none',
