@@ -271,6 +271,48 @@ export const deleteHillaryClinton = /* GraphQL */ `
     }
   }
 `;
+export const updateIntalentSurvey = /* GraphQL */ `
+  mutation UpdateIntalentSurvey(
+    $input: UpdateIntalentSurveyInput!
+    $condition: ModelIntalentSurveyConditionInput
+  ) {
+    updateIntalentSurvey(input: $input, condition: $condition) {
+      id
+      email
+      firstName
+      lastName
+      phoneNumber
+      schoolYear
+      yearsExp
+      major
+      interestReason
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteIntalentSurvey = /* GraphQL */ `
+  mutation DeleteIntalentSurvey(
+    $input: DeleteIntalentSurveyInput!
+    $condition: ModelIntalentSurveyConditionInput
+  ) {
+    deleteIntalentSurvey(input: $input, condition: $condition) {
+      id
+      email
+      firstName
+      lastName
+      phoneNumber
+      schoolYear
+      yearsExp
+      major
+      interestReason
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const createConnection = /* GraphQL */ `
   mutation CreateConnection(
     $input: CreateConnectionInput!
@@ -6229,6 +6271,27 @@ export const createHillaryClinton = /* GraphQL */ `
       id
       email
       deviceToken
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createIntalentSurvey = /* GraphQL */ `
+  mutation CreateIntalentSurvey(
+    $input: CreateIntalentSurveyInput!
+    $condition: ModelIntalentSurveyConditionInput
+  ) {
+    createIntalentSurvey(input: $input, condition: $condition) {
+      id
+      email
+      firstName
+      lastName
+      phoneNumber
+      schoolYear
+      yearsExp
+      major
+      interestReason
       createdAt
       updatedAt
       __typename

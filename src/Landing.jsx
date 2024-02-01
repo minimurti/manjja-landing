@@ -12,14 +12,27 @@ import './Landing.css'
 // import './fonts.css';
 
 import { generateClient } from 'aws-amplify/api';
-import { createHillaryClinton } from './graphql/mutations';
+import { createIntalentSurvey } from './graphql/mutations';
 
 function Landing() {
+  const [stepOpacity, setStepOpacity] = useState(0.0);
   const [displayBetaForm, setDisplayBetaForm] = useState(false);
   const [displayWaitlistForm, setDisplayWaitlistForm] = useState(false);
+  const [deFadeWaitlistForm, setDeFadeWaitlistForm] = useState(false);
   const [loading, setLoading] = useState(false);
   const [passcode, setPasscode] = useState('');
+
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [schoolYear, setSchoolYear] = useState('');
+  const [major, setMajor] = useState('');
+  const [yearsExp, setYearsExp] = useState('');
+  const [interestReason, setInterestReason] = useState('');
+  const [step, setStep] = useState(1);
+
+
   const [showIncorrectPasscode, setShowIncorrectPasscode] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
 
@@ -46,6 +59,8 @@ function Landing() {
 
   var isTypingEE = false;
 
+
+
   function typeLetters(i) {
     if (i <= 20) {
       setTimeout(function () {
@@ -63,7 +78,7 @@ function Landing() {
 
     const interval = setInterval(() => {
       // Check if all images have been displayed, then clear the interval
-      if (index === images.length) {
+      if (index == setters.length) {
         clearInterval(interval);
         return;
       }
@@ -73,6 +88,9 @@ function Landing() {
 
       // Hide the current image after a delay
       setTimeout(() => {
+        if (index == setters.length) {
+          return;
+        }
         setters[index](false);
       }, delay);
 
@@ -195,19 +213,32 @@ function Landing() {
 
   const showBetaForm = () => {
     setDisplayBetaForm(true);
+    setTimeout(() => {
+      setDeFadeWaitlistForm(true)
+    }, 10);
   };
 
   const hideBetaForm = () => {
-    setDisplayBetaForm(false);
+    setTimeout(() => {
+      setDisplayBetaForm(false);
+    }, 400);
+    setDeFadeWaitlistForm(false)
   };
 
   const showWaitlistForm = () => {
-    console.log('I ran')
     setDisplayWaitlistForm(true);
+    setTimeout(() => {
+      setDeFadeWaitlistForm(true)
+      setStepOpacity(1.0);
+    }, 10);
   };
 
   const hideWaitlistForm = () => {
-    setDisplayWaitlistForm(false);
+    setDeFadeWaitlistForm(false)
+    setTimeout(() => {
+      setStepOpacity(0);
+      setDisplayWaitlistForm(false);
+    }, 400);
   };
 
   const submitPasscode = async (event) => {
@@ -226,35 +257,82 @@ function Landing() {
     event.preventDefault();
 
     setSuccessMessage('')
-    if (!email.includes('@') || !email.includes('.')) {
-      setSuccessMessage('Please enter a valid email.');
+    if (step === 1) {
+
+      if (!email.includes('@') || !email.includes('.')) {
+        setSuccessMessage('Please enter a valid email.');
+        return;
+      }
+
+      if (!firstName.trim() || !lastName.trim()) {
+        setSuccessMessage('Please enter both first name and last name.');
+        return;
+      }
+
+      setStepOpacity(0.0)
+      setTimeout(() => {
+        setStep(2);
+        setStepOpacity(1.0)
+      }, 410);
+
       return;
     }
-    try {
 
-      setLoading(true);
-      const client = generateClient();
+    if (step === 2) {
+      setStepOpacity(0.0)
+      setTimeout(() => {
+        setStep(3);
+        setStepOpacity(1.0)
+      }, 410);
+      return;
+    }
+    if (step === 3) {
+      try {
 
-      const result = await client.graphql({
-        authMode: 'apiKey',
-        query: createHillaryClinton,
-        variables: {
-          input: {
-            email: email
+        setLoading(true);
+        const client = generateClient();
+
+        const result = await client.graphql({
+          authMode: 'apiKey',
+          query: createIntalentSurvey,
+          variables: {
+            input: {
+              email: email,
+              firstName: firstName,
+              lastName: lastName,
+              phoneNumber: phoneNumber,
+              schoolYear: schoolYear,
+              yearsExp: yearsExp,
+              major: major,
+              interestReason: interestReason
+
+            }
           }
-        }
-      });
+        });
 
-      if (result.errors) {
-        setSuccessMessage('An error occured, please try again later.');
-        setLoading(false);
-      } else {
-        setSuccessMessage('Thank you for joining the waitlist!');
-        setLoading(false);
+        if (result.errors) {
+          setSuccessMessage('An error occured, please try again later.');
+          setLoading(false);
+        } else {
+          setStepOpacity(0.0)
+          setTimeout(() => {
+            setStep(4)
+            setStepOpacity(1.0)
+            setSuccessMessage('Thank you for joining the waitlist!');
+            setLoading(false);
+          }, 410);
+
+        }
+        // Handle response accordingly
+      } catch (error) {
+        // Handle email submission error
       }
-      // Handle response accordingly
-    } catch (error) {
-      // Handle email submission error
+      return;
+    }
+    if (step == 4) {
+      hideWaitlistForm();
+      setSuccessMessage('');
+      setStep(1);
     }
   };
 
@@ -292,7 +370,7 @@ function Landing() {
               fontSize: '20pt',
               fontWeight: '400',
               opacity: showTopElement3 ? 1 : 0,
-              transition: 'opacity 0.5s ease',
+              transition: 'opacity 0.5s ease, box-shadow 0.3s ease',
             }}>
               Join Beta
             </a>
@@ -300,7 +378,7 @@ function Landing() {
               // marigins are needed to balance size of adjacent button
               fontSize: '20pt',
               opacity: showTopElement4 ? 1 : 0,
-              transition: 'opacity 0.5s ease',
+              transition: 'opacity 0.5s ease, color 0.3s ease',
             }}>
               Join Waitlist
             </a>
@@ -445,8 +523,8 @@ function Landing() {
 
         {
           displayBetaForm && (
-            <div className="beta-form-container">
-              <div className="beta-form">
+            <div className={`beta-form-container ${deFadeWaitlistForm ? 'show' : ''}`}>
+              <div className={`beta-form ${deFadeWaitlistForm ? 'show' : ''}`}>
                 <button onClick={hideBetaForm} className="exit-button">X</button>
                 <form onSubmit={submitPasscode} id="passcodeForm">
                   <input type="password" placeholder="Enter Beta Passcode" value={passcode} onChange={(e) => setPasscode(e.target.value)} />
@@ -458,18 +536,74 @@ function Landing() {
           )
         }
 
-        {displayWaitlistForm && (
-          <div className="beta-form-container">
-            <div className="beta-form">
+        {displayWaitlistForm &&
+          <div className={`beta-form-container ${deFadeWaitlistForm ? 'show' : ''}`}>
+            <div className={`beta-form ${deFadeWaitlistForm ? 'show' : ''}`} style={{ height: '325px' }}>
               <button onClick={hideWaitlistForm} className="exit-button">X</button>
               <form onSubmit={submitEmail} id="emailForm" >
-                <input type="text" placeholder="Enter Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                <button type="submit" className="submitBtn" disabled={loading}>{loading ? 'Loading...' : 'Submit'}</button>
+                <div style={{ height: '200px' }}>
+                  {/* Ensure constant height for smooth animation */}
+                  {(() => {
+                    switch (step) {
+                      case 1:
+                        return (
+                          <span style={{ opacity: stepOpacity, transition: 'opacity 0.4s ease-in-out' }}>
+                            <input type="text" placeholder="First Name *" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                            <input type="text" placeholder="Last Name *" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                            <input type="text" placeholder="Enter Email *" value={email} onChange={(e) => setEmail(e.target.value)} />
+                          </span>
+                        );
+                      case 2:
+                        return (
+                          <span style={{ opacity: stepOpacity, transition: 'opacity 0.4s ease-in-out' }}>
+                            <input type="tel" placeholder="Phone Number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+                            <input type="text" placeholder="School Year" value={schoolYear} onChange={(e) => setSchoolYear(e.target.value)} />
+                            <input type="text" placeholder="Major" value={major} onChange={(e) => setMajor(e.target.value)} />
+                          </span>
+                        );
+                      case 3:
+                        return (
+                          <span style={{ opacity: stepOpacity, transition: 'opacity 0.4s ease-in-out' }}>
+                            <textarea
+                              type="text" placeholder="Why are you interested in inTalent?"
+                              value={interestReason} onChange={(e) => setInterestReason(e.target.value)}
+                            />
+                            {/* <input type="text" placeholder="Years Work Experience" value={yearsExp} onChange={(e) => setYearsExp(e.target.value)} /> */}
+
+                          </span>
+                        )
+                      case 4:
+                        return (
+                          <div style={{ height: '100px' }}>
+                          </div>
+                        )
+                      default:
+                        return null;
+                    }
+                  })()}
+                  {successMessage && <p style={{ color: 'white', fontWeight: '100', opacity: stepOpacity, transition: 'opacity 0.4s ease-in-out' }}>{successMessage}</p>}
+
+                </div>
+                <button type="submit" className="submitBtn" disabled={loading} style={{ width: '175px' }}>
+                  {loading ? 'Loading...' : (() => {
+                    switch (step) {
+                      case 1:
+                        return 'Submit';
+                      case 2:
+                        return `Submit ${step}/3`;
+                      case 3:
+                        return 'Finish';
+                      case 4:
+                        return 'Exit';
+                      default:
+                        return 'Submit';
+                    }
+                  })()}
+                </button>
               </form>
-              {successMessage && <p style={{ color: 'blue' }}>{successMessage}</p>}
             </div>
           </div>
-        )}
+        }
       </main >
       <div style={bgStyle}></div>
     </>

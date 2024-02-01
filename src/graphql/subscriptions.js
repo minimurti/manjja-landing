@@ -1368,6 +1368,66 @@ export const onDeleteHillaryClinton = /* GraphQL */ `
     }
   }
 `;
+export const onCreateIntalentSurvey = /* GraphQL */ `
+  subscription OnCreateIntalentSurvey(
+    $filter: ModelSubscriptionIntalentSurveyFilterInput
+  ) {
+    onCreateIntalentSurvey(filter: $filter) {
+      id
+      email
+      firstName
+      lastName
+      phoneNumber
+      schoolYear
+      yearsExp
+      major
+      interestReason
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateIntalentSurvey = /* GraphQL */ `
+  subscription OnUpdateIntalentSurvey(
+    $filter: ModelSubscriptionIntalentSurveyFilterInput
+  ) {
+    onUpdateIntalentSurvey(filter: $filter) {
+      id
+      email
+      firstName
+      lastName
+      phoneNumber
+      schoolYear
+      yearsExp
+      major
+      interestReason
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteIntalentSurvey = /* GraphQL */ `
+  subscription OnDeleteIntalentSurvey(
+    $filter: ModelSubscriptionIntalentSurveyFilterInput
+  ) {
+    onDeleteIntalentSurvey(filter: $filter) {
+      id
+      email
+      firstName
+      lastName
+      phoneNumber
+      schoolYear
+      yearsExp
+      major
+      interestReason
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const onCreateConnection = /* GraphQL */ `
   subscription OnCreateConnection(
     $filter: ModelSubscriptionConnectionFilterInput

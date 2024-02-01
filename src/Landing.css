@@ -14,11 +14,23 @@ li {
 }
 
 
+textarea {
+  width: 200px;
+  min-height: 135px;
+  /* font-size: 16px; */
+  /* width: 300px; */
+  /* outline: none; */
+  /* transition: border-color 0.3s ease-in-out; */
+}
 
-input {
+
+input,
+textarea {
+  background: #08060f;
+  color: #ccc;
   margin: 10px;
   padding: 10px;
-  border: 2px solid #ccc;
+  border: 1px solid #ccc;
   border-radius: 5px;
   /* font-size: 16px; */
   /* width: 300px; */
@@ -67,11 +79,15 @@ input::placeholder {
   display: inline-block;
   padding: 10px 10px;
   margin: 20px;
-  color: #fff;
+  color: hsl(242.38deg 77.81% 83.75%);
   text-decoration: none;
   border-radius: 25px;
   transition: background-color 0.3s;
   font-size: 20px;
+}
+
+.joinWaitlist:hover {
+  color: white;
 }
 
 .scroll-box {
@@ -271,6 +287,9 @@ a {
 }
 
 .beta-form-container {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, display 0.3s ease-in-out;
+  /* Add transitions for opacity and transform */
+  opacity: 0;
   position: fixed;
   top: 0;
   left: 0;
@@ -286,11 +305,14 @@ a {
 
 
 .beta-form {
-  background-color: #fff;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  /* Add transitions for opacity and transform */
+  opacity: 0;
+  background-color: #080816;
   padding: 0px;
   border-radius: 15px;
   text-align: center;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
   max-width: 300px;
   padding: 20px;
   /* Adjust the maximum width as needed */
@@ -298,10 +320,22 @@ a {
   /* Center the form horizontally */
   position: relative;
   /* Position the form */
-  top: 50%;
+  top: calc(50% - 150px);
   /* Move the form down by 50% of the container's height */
   transform: translateY(-50%);
   /* Adjust the position to center vertically */
+}
+
+.beta-form.show {
+  opacity: 1;
+  transform: translateY(0);
+  /* Set transform to 0 to bring the form back to its original position */
+}
+
+.beta-form-container.show {
+  opacity: 1;
+  transform: translateY(0);
+  /* Set transform to 0 to bring the form back to its original position */
 }
 
 .exit-button {

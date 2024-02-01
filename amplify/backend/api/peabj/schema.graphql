@@ -61,6 +61,18 @@ type HillaryClinton @model @auth(rules: [{allow: public, operations: [create]}, 
   deviceToken: String
 } 
 
+type IntalentSurvey @model @auth(rules: [{allow: public, operations: [create]}, {allow: private, operations: [create]}]) {
+  id: ID!
+  email: String
+  firstName: String
+  lastName: String
+  phoneNumber: String
+  schoolYear: String
+  yearsExp: String
+  major: String
+  interestReason: String
+} 
+
 type Connection@model @auth(rules: [{allow: private}]) {
   id: ID!
   publicUserInfoModelID: ID! @index(name: "byPublicUserInfoModel", queryField: "connectionsByPuimID")

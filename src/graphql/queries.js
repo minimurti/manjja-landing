@@ -99,6 +99,50 @@ export const listHillaryClintons = /* GraphQL */ `
     }
   }
 `;
+export const getIntalentSurvey = /* GraphQL */ `
+  query GetIntalentSurvey($id: ID!) {
+    getIntalentSurvey(id: $id) {
+      id
+      email
+      firstName
+      lastName
+      phoneNumber
+      schoolYear
+      yearsExp
+      major
+      interestReason
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listIntalentSurveys = /* GraphQL */ `
+  query ListIntalentSurveys(
+    $filter: ModelIntalentSurveyFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listIntalentSurveys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        email
+        firstName
+        lastName
+        phoneNumber
+        schoolYear
+        yearsExp
+        major
+        interestReason
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
 export const getConnection = /* GraphQL */ `
   query GetConnection($id: ID!) {
     getConnection(id: $id) {
