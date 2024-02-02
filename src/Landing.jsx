@@ -28,7 +28,7 @@ function Landing() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [schoolYear, setSchoolYear] = useState('');
   const [major, setMajor] = useState('');
-  const [yearsExp, setYearsExp] = useState('');
+  const [yearsExp, setYearsExp] = useState(''); //Maybe use later
   const [interestReason, setInterestReason] = useState('');
   const [step, setStep] = useState(1);
 
@@ -565,10 +565,10 @@ function Landing() {
                         return (
                           <span style={{ opacity: stepOpacity, transition: 'opacity 0.4s ease-in-out' }}>
                             <textarea
-                              type="text" placeholder="Why are you interested in inTalent?"
+                              type="text" placeholder="Why are you interested in Intalent?"
                               value={interestReason} onChange={(e) => setInterestReason(e.target.value)}
                             />
-                            {/* <input type="text" placeholder="Years Work Experience" value={yearsExp} onChange={(e) => setYearsExp(e.target.value)} /> */}
+                            {/* <input type="text" placeholder="Years of Experience" value={yearsExp} onChange={(e) => setYearsExp(e.target.value)} /> */}
 
                           </span>
                         )
