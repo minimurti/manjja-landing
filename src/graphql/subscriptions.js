@@ -1428,6 +1428,66 @@ export const onDeleteIntalentSurvey = /* GraphQL */ `
     }
   }
 `;
+export const onCreateManjjaSurvey = /* GraphQL */ `
+  subscription OnCreateManjjaSurvey(
+    $filter: ModelSubscriptionManjjaSurveyFilterInput
+  ) {
+    onCreateManjjaSurvey(filter: $filter) {
+      id
+      email
+      firstName
+      lastName
+      phoneNumber
+      occupation
+      yearsExp
+      employer
+      interestReason
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateManjjaSurvey = /* GraphQL */ `
+  subscription OnUpdateManjjaSurvey(
+    $filter: ModelSubscriptionManjjaSurveyFilterInput
+  ) {
+    onUpdateManjjaSurvey(filter: $filter) {
+      id
+      email
+      firstName
+      lastName
+      phoneNumber
+      occupation
+      yearsExp
+      employer
+      interestReason
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteManjjaSurvey = /* GraphQL */ `
+  subscription OnDeleteManjjaSurvey(
+    $filter: ModelSubscriptionManjjaSurveyFilterInput
+  ) {
+    onDeleteManjjaSurvey(filter: $filter) {
+      id
+      email
+      firstName
+      lastName
+      phoneNumber
+      occupation
+      yearsExp
+      employer
+      interestReason
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const onCreateConnection = /* GraphQL */ `
   subscription OnCreateConnection(
     $filter: ModelSubscriptionConnectionFilterInput

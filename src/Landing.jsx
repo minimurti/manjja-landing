@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import blurb from './assets/talent-gradient.png'
-import logo from './assets/inTalentLogoWhite.png'
+import blurb from './assets/generated-blurb.png'
+import logo from './assets/manjja-logo.png'
+import example from './assets/manjja-example-1-zoom.png'
 import data from './assets/data.png'
 import seniority from './assets/seniority.png'
 import demographic from './assets/demographic.png'
@@ -12,7 +13,7 @@ import './Landing.css'
 // import './fonts.css';
 
 import { generateClient } from 'aws-amplify/api';
-import { createIntalentSurvey } from './graphql/mutations';
+import { createManjjaSurvey } from './graphql/mutations';
 
 function Landing() {
   const [stepOpacity, setStepOpacity] = useState(0.0);
@@ -38,6 +39,8 @@ function Landing() {
 
   const [showScrollBox, setShowScrollBox] = useState(false);
   const [showBgBlur, setShowBgBlur] = useState(false);
+  const [showNewBg, setShowNewBG] = useState(false);
+
   const [showScrollBox2, setShowScrollBox2] = useState(false);
   const [showScrollBox3, setShowScrollBox3] = useState(false);
   const [showScrollBox4, setShowScrollBox4] = useState(false);
@@ -168,6 +171,7 @@ function Landing() {
 
       if (scrollPosition > triggerOffset2) {
         setShowScrollBox2(true);
+        setShowNewBG(true);
         setTimeout(() => {
           setTypingDone(true);
         }, 1100); // Duration of typing animation (3 seconds in this example)
@@ -180,6 +184,7 @@ function Landing() {
         setEEWidth(0)
         isTypingEE = false;
         setShowScrollBox2(false);
+        setShowNewBG(false);
       }
 
       if (scrollPosition > triggerOffset3) {
@@ -294,16 +299,16 @@ function Landing() {
 
         const result = await client.graphql({
           authMode: 'apiKey',
-          query: createIntalentSurvey,
+          query: createManjjaSurvey,
           variables: {
             input: {
               email: email,
               firstName: firstName,
               lastName: lastName,
               phoneNumber: phoneNumber,
-              schoolYear: schoolYear,
+              occupation: schoolYear,
               yearsExp: yearsExp,
-              major: major,
+              employer: major,
               interestReason: interestReason
 
             }
@@ -337,14 +342,14 @@ function Landing() {
   };
 
   const bgStyle = {
-    backgroundImage: `url(${blurb})`,
+    backgroundImage: showNewBg ? `url(${example})` : `url(${blurb})`,
     position: 'fixed',
-    top: '25%',
-    left: '25%',
+    top: showNewBg ? '0' : '25%',
+    left: showNewBg ? '0' : '25%',
     width: '100%',
     height: '100%',
     zIndex: -1,
-    transition: 'opacity 0.5s ease',
+    transition: '0.5s ease',
     opacity: showBgBlur ? 0.225 : 0.112,
     /* Add other styles for background size, position, etc. */
   };
@@ -353,17 +358,16 @@ function Landing() {
     <>
       <main>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <img src={logo} alt="Logo" height={80} style={{ marginLeft: '2vw' }} />
-          <button onClick={showBetaForm} className="getStartedBtn" style={{ fontSize: '12px', fontWeight: 'bold' }}>Beta</button>
+          <img src={logo} alt="Logo" height={80} style={{ margin: '2vw' }} />
         </div>
         <section className="hero" style={{ margin: '25px' }} >
           <h2 style={{ opacity: showTopElement1 ? 1 : 0, paddingTop: showTopElement1 ? '0px' : '100px', transition: 'opacity 0.5s ease, padding 0.3s ease' }} >
-            Job listings with likelihood<br />
-            of visa sponsorship
+            Let customers handle<br />
+            your marketing
           </h2>
           <p style={{ paddingRight: showTopElement2 ? '0px' : '100px', opacity: showTopElement2 ? 1 : 0, transition: 'opacity 0.5s ease, padding 0.3s ease' }}>
-            We use AI to validate the job listing’s likelihood<br />
-            of work visa sponsorship for international students
+            We help encourage customers to photograph your <br />
+            business and post/review it on social media for you!
           </p>
           <div style={{ marginTop: '85px' }}>
             <a onClick={showBetaForm} className="getStartedBtn" style={{
@@ -405,9 +409,9 @@ function Landing() {
             </div>
           </div>
           <div className="scroll-box-right">
-            <h1>Find Visa Sponsoring Jobs</h1>
+            <h1>Get Discovered</h1>
             <p>
-              We develop an AI model that browses in real time all job postings to evaluate their likelihood of work visa sponsorship for international students and visa-dependent applicants.
+              We encourage your customers to post on social media for you. With many customers photographing your food, drinks, and other goods and services already, we help incentivize them to be sure and tag your establishment.
             </p>
           </div>
         </div>
@@ -417,27 +421,20 @@ function Landing() {
           className={`scroll-box ${showScrollBox2 ? 'show' : ''}`}
         >
           <div className="scroll-box-left">
-            <h1>Avoid job rejections due to visa issue</h1>
+            <h1>Reliable reviews!</h1>
             <p>
-              We develop an AI model that browses in real time all job postings to evaluate their likelihood of work visa sponsorship for international students and visa-dependent applicants.
+              With pay-offs and bots handling online reviews, people have grown to distrust review sites. We give customers a site they can trust where reviews are exclusively done by verified paying customers. Simply say "post us and get a free cookie! (or other item)"
             </p>
           </div>
           <div className="scroll-box-right">
-            <div className={`search-box ${typingDone ? 'typing-done' : ''}`}>
-              <span className="typing-text" style={{ width: eeWidth + '%' }}> 🔎 Entry Level Managment</span>
-            </div>
-
-            <div className={`job-card-example ${typingDone ? 'show-card' : ''}`} style={{ scale: '0.66' }}>
-              <div className="likelihood-section" style={{ color: 'rgb(9, 188, 105)' }}>
-                <p className="likelihood-text">95%</p>
-                <p className="likelihood-desc">Likelihood to Sponsor</p>
-              </div>
-              <div className="middle-section">
-                <h2>Deposit Management Entry Level</h2>
-                <h4>CIBC</h4>
-                {/* <p>Support the daily activities within the Deposit Operations a....</p> */}
-              </div>
-            </div>
+            <img src={example}
+              style={{
+                height: '500px',
+                position: 'relative',
+                opacity: '100',
+                borderRadius: '20px'
+              }}
+            />
           </div>
 
 
@@ -456,46 +453,46 @@ function Landing() {
               <span className='potentially-top-three'>
                 <div style={{ opacity: showImage1 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
                   <img src={industry} alt="Demograhics" />
-                  <p>Job<br />Industry</p>
+                  <p>Finance<br />Managment</p>
                 </div>
                 <div id="img-2" style={{ opacity: showImage2 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
                   <img src={demographic} alt="Demograhics" />
-                  <p>Company’s<br />Demographics Analysis</p>
+                  <p>Organic<br />Growth</p>
                 </div>
                 <div id="img-3" style={{ opacity: showImage3 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
                   <img src={data} alt="Data" />
-                  <p>Company’s<br />Sponsorship History</p>
+                  <p>Post<br />Analysis</p>
                 </div>
               </span>
               <span className='potentially-bottom-two'>
                 <div id="img-4" style={{ opacity: showImage4 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
                   <img src={seniority} alt="Seniority" />
-                  <p>Seniority<br /> level</p>
+                  <p>Feedback<br /> Assessment</p>
                 </div>
 
                 <div id="img-5" style={{ opacity: showImage5 ? 1 : 0, transition: 'opacity 0.5s ease', textAlign: 'center', margin: '10 45px' }}>
                   <img src={experience} alt="Experience" />
-                  <p>Experience<br /> level</p>
+                  <p>Automated<br /> Accounting</p>
                 </div>
               </span>
             </section>
 
           </div>
           <div className='scroll-box-right'>
-            <h1>How we evaluates jobs</h1>
+            <h1>How we grow business</h1>
             <ul>
               <li>
-                Intalent scans job postings (~2,000 a day) in real time, using AI to assess visa sponsorship likelihood.
+                Manjja as a payment platform will encourage customers to set up accounts you can track
                 <br />
                 <br />
               </li>
               <li>
-                After validation, we manually check the accuracy of the validated likelihood of each job posting’s
+                If the users posts your business on social media and our platform verifies 24-hour listing, then we will automatically deduct the free item or discount advertised hassle free
                 <br />
                 <br />
               </li>
               <li>
-                Confirmed visa sponsorship jobs are then posted on the Intalent website
+                Custormers and business are together happy as the customer's post bring in new customers through their friends and family who see their posts.
                 <br />
                 <br />
               </li>
@@ -557,17 +554,18 @@ function Landing() {
                         return (
                           <span style={{ opacity: stepOpacity, transition: 'opacity 0.4s ease-in-out' }}>
                             <input type="tel" placeholder="Phone Number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
-                            <input type="text" placeholder="School Year" value={schoolYear} onChange={(e) => setSchoolYear(e.target.value)} />
-                            <input type="text" placeholder="Major" value={major} onChange={(e) => setMajor(e.target.value)} />
+                            <input type="text" placeholder="Occupation" value={schoolYear} onChange={(e) => setSchoolYear(e.target.value)} />
+                            <input type="text" placeholder="Employer/Institute" value={major} onChange={(e) => setMajor(e.target.value)} />
                           </span>
                         );
                       case 3:
                         return (
                           <span style={{ opacity: stepOpacity, transition: 'opacity 0.4s ease-in-out' }}>
                             <textarea
-                              type="text" placeholder="Why are you interested in Intalent?"
+                              type="text" placeholder="Why are you interested in manjja?"
                               value={interestReason} onChange={(e) => setInterestReason(e.target.value)}
                             />
+                            <p style={{ color: 'grey', fontSize: 'x-small' }}>*By clicking submit, you agree to recieve email updates</p>
                             {/* <input type="text" placeholder="Years of Experience" value={yearsExp} onChange={(e) => setYearsExp(e.target.value)} /> */}
 
                           </span>

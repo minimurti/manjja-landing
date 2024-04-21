@@ -61,7 +61,7 @@ type HillaryClinton @model @auth(rules: [{allow: public, operations: [create]}, 
   deviceToken: String
 } 
 
-type IntalentSurvey @model @auth(rules: [{allow: public, operations: [create]}, {allow: private, operations: [create]}]) {
+type IntalentSurvey @model @auth(rules: [{allow: public, operations: [create, delete]}, {allow: private, operations: [create, delete]}]) {
   id: ID!
   email: String
   firstName: String
@@ -70,6 +70,18 @@ type IntalentSurvey @model @auth(rules: [{allow: public, operations: [create]}, 
   schoolYear: String
   yearsExp: String
   major: String
+  interestReason: String
+} 
+
+type ManjjaSurvey @model @auth(rules: [{allow: public, operations: [create]}, {allow: private, operations: [create]}]) {
+  id: ID!
+  email: String
+  firstName: String
+  lastName: String
+  phoneNumber: String
+  occupation: String
+  yearsExp: String
+  employer: String
   interestReason: String
 } 
 

@@ -17,7 +17,8 @@ li {
   display: inline-block;
   padding: 12px 39px;
   margin: 20px;
-  background: linear-gradient(to right, #4b0082, #000080);
+  background: linear-gradient(to right, #820000, hsla(11, 100%, 62.2%, 1));
+  ;
   /* Gradient from dark purple to dark blue */
   color: #ffffff;
   /* White text */
@@ -40,7 +41,8 @@ li {
   display: inline-block;
   padding: 12px 39px;
   margin: 20px;
-  background: linear-gradient(to right, #4b0082, #000080);
+  background: linear-gradient(to right, #820000, hsla(11, 100%, 62.2%, 1));
+  ;
   /* Gradient from dark purple to dark blue */
   color: #ffffff;
   /* White text */
@@ -93,7 +95,7 @@ body {
   src: url('/fonts/leaguespartan-bold.woff2') format('woff2'),
     url('/fonts/leaguespartan-bold.woff') format('woff'),
     url('/fonts/leaguespartan-bold.ttf') format('truetype');
-  background-color: #111;
+  background-color: #a11;
   color: #eee;
   line-height: 1.6;
   position: relative;
@@ -175,7 +177,7 @@ main {
   display: inline-block;
   line-height: 1.1;
   height: 2000px;
-  /* background-image: url('assets/talent-gradient.png'); */
+  /* background-image: url('assets/generated-blurb.png'); */
   background-position: center, center;
   background-size: contain;
   color: #fff;
@@ -206,7 +208,7 @@ main {
   text-align: center;
   padding: 30px 0;
   /* Keep the padding for the hero section */
-  /* background-image: url('talent-gradient.png');
+  /* background-image: url('generated-blurb.png');
     background-position: center, center;
     background-size: contain; */
   color: #fff;

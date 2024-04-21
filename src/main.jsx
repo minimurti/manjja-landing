@@ -4,6 +4,7 @@ import Landing from './Landing.jsx'
 import Layout from './Layout.jsx'
 import EmptyLayout from "./EmptyLayout";
 import List from './List.jsx'
+import Unsubscribe from './Unsubscribe';
 import './index.css'
 import { Amplify } from 'aws-amplify';
 import amplifyconfig from './amplifyconfiguration.json';
@@ -21,6 +22,9 @@ export default function App() {
         </Route>
         <Route path="list" element={<Layout />}>
           <Route index element={<List />} />
+        </Route>
+        <Route path="unsubscribe" element={<Layout />}>
+          <Route index element={<Unsubscribe />} />
         </Route>
       </Routes>
     </BrowserRouter>

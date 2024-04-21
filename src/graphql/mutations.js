@@ -292,20 +292,41 @@ export const updateIntalentSurvey = /* GraphQL */ `
     }
   }
 `;
-export const deleteIntalentSurvey = /* GraphQL */ `
-  mutation DeleteIntalentSurvey(
-    $input: DeleteIntalentSurveyInput!
-    $condition: ModelIntalentSurveyConditionInput
+export const updateManjjaSurvey = /* GraphQL */ `
+  mutation UpdateManjjaSurvey(
+    $input: UpdateManjjaSurveyInput!
+    $condition: ModelManjjaSurveyConditionInput
   ) {
-    deleteIntalentSurvey(input: $input, condition: $condition) {
+    updateManjjaSurvey(input: $input, condition: $condition) {
       id
       email
       firstName
       lastName
       phoneNumber
-      schoolYear
+      occupation
       yearsExp
-      major
+      employer
+      interestReason
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteManjjaSurvey = /* GraphQL */ `
+  mutation DeleteManjjaSurvey(
+    $input: DeleteManjjaSurveyInput!
+    $condition: ModelManjjaSurveyConditionInput
+  ) {
+    deleteManjjaSurvey(input: $input, condition: $condition) {
+      id
+      email
+      firstName
+      lastName
+      phoneNumber
+      occupation
+      yearsExp
+      employer
       interestReason
       createdAt
       updatedAt
@@ -6291,6 +6312,48 @@ export const createIntalentSurvey = /* GraphQL */ `
       schoolYear
       yearsExp
       major
+      interestReason
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteIntalentSurvey = /* GraphQL */ `
+  mutation DeleteIntalentSurvey(
+    $input: DeleteIntalentSurveyInput!
+    $condition: ModelIntalentSurveyConditionInput
+  ) {
+    deleteIntalentSurvey(input: $input, condition: $condition) {
+      id
+      email
+      firstName
+      lastName
+      phoneNumber
+      schoolYear
+      yearsExp
+      major
+      interestReason
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createManjjaSurvey = /* GraphQL */ `
+  mutation CreateManjjaSurvey(
+    $input: CreateManjjaSurveyInput!
+    $condition: ModelManjjaSurveyConditionInput
+  ) {
+    createManjjaSurvey(input: $input, condition: $condition) {
+      id
+      email
+      firstName
+      lastName
+      phoneNumber
+      occupation
+      yearsExp
+      employer
       interestReason
       createdAt
       updatedAt

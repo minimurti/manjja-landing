@@ -143,6 +143,50 @@ export const listIntalentSurveys = /* GraphQL */ `
     }
   }
 `;
+export const getManjjaSurvey = /* GraphQL */ `
+  query GetManjjaSurvey($id: ID!) {
+    getManjjaSurvey(id: $id) {
+      id
+      email
+      firstName
+      lastName
+      phoneNumber
+      occupation
+      yearsExp
+      employer
+      interestReason
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listManjjaSurveys = /* GraphQL */ `
+  query ListManjjaSurveys(
+    $filter: ModelManjjaSurveyFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listManjjaSurveys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        email
+        firstName
+        lastName
+        phoneNumber
+        occupation
+        yearsExp
+        employer
+        interestReason
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
 export const getConnection = /* GraphQL */ `
   query GetConnection($id: ID!) {
     getConnection(id: $id) {
